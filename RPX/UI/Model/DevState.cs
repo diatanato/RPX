@@ -21,29 +21,18 @@
 ===========================================================================
 */
 
-using System;
-
-namespace RPX
+namespace RPX.UI.Model
 {
     using Interfaces;
+    using Utils;
 
-    /************************************************************************
-    *                                                                       *
-    *                                                                       *
-    *                                                                       *
-    ************************************************************************/
-    
-    public partial class MainWindow
+    public class DevState : IState
     {
-        public MainWindow()
+        public ObservableProperty<bool> IsConnectedToDevice { get; private set; }
+        
+        public DevState()
         {
-            InitializeComponent();
-        }
-
-        protected override void OnSourceInitialized(EventArgs e)
-        {
-            base.OnSourceInitialized(e);
-            ServiceStorage.Resolve<IDevice>().SetNotificationRecipient(this);
+            IsConnectedToDevice = new ObservableProperty<bool>(false);
         }
     }
 }

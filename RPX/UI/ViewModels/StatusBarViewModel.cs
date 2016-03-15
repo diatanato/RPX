@@ -21,29 +21,25 @@
 ===========================================================================
 */
 
-using System;
+using RPX.UI.Utils;
 
-namespace RPX
+namespace RPX.UI.ViewModels
 {
-    using Interfaces;
-
-    /************************************************************************
-    *                                                                       *
-    *                                                                       *
-    *                                                                       *
-    ************************************************************************/
-    
-    public partial class MainWindow
+    public class StatusBarViewModel : ViewModel
     {
-        public MainWindow()
+        public ObservableProperty<bool> ConnectionStatus { get; private set; }
+
+        public StatusBarViewModel()
         {
-            InitializeComponent();
+            ConnectionStatus = new ObservableProperty<bool>();
+
+            SetConnectionStatus();
+            Model.IsConnectedToDevice.Changed += ((sender, e) => SetConnectionStatus());
         }
 
-        protected override void OnSourceInitialized(EventArgs e)
+        private void SetConnectionStatus()
         {
-            base.OnSourceInitialized(e);
-            ServiceStorage.Resolve<IDevice>().SetNotificationRecipient(this);
+            ConnectionStatus.Value = Model.IsConnectedToDevice.Value;
         }
     }
 }

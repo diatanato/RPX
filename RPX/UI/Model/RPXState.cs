@@ -23,27 +23,34 @@
 
 using System;
 
-namespace RPX
+namespace RPX.UI.Model
 {
     using Interfaces;
+    using Utils;
 
-    /************************************************************************
-    *                                                                       *
-    *                                                                       *
-    *                                                                       *
-    ************************************************************************/
-    
-    public partial class MainWindow
+    public class RPXState : IState
     {
-        public MainWindow()
+        private readonly IService mService = ServiceStorage.Resolve<IService>();
+
+        public ObservableProperty<bool> IsConnectedToDevice { get; private set; }
+       
+        public RPXState()
         {
-            InitializeComponent();
+            
+            IsConnectedToDevice = new ObservableProperty<bool>(mService.IsConnected);
+            
+            mService.ConnectedToDevice += ConnectedToDevice;
+            mService.DisconnectedFromDevice += DisconnectedFromDevice;
         }
 
-        protected override void OnSourceInitialized(EventArgs e)
+        private void ConnectedToDevice(object sender, EventArgs e)
         {
-            base.OnSourceInitialized(e);
-            ServiceStorage.Resolve<IDevice>().SetNotificationRecipient(this);
+            IsConnectedToDevice.Value = true;
+        }
+
+        private void DisconnectedFromDevice(object sender, EventArgs e)
+        {
+            IsConnectedToDevice.Value = false;
         }
     }
 }

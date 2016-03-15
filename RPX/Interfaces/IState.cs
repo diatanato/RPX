@@ -21,29 +21,15 @@
 ===========================================================================
 */
 
-using System;
-
-namespace RPX
+namespace RPX.Interfaces
 {
-    using Interfaces;
+    using UI.Utils;
 
-    /************************************************************************
-    *                                                                       *
-    *                                                                       *
-    *                                                                       *
-    ************************************************************************/
-    
-    public partial class MainWindow
+    /// <summary>
+    /// Модель состояния процессора
+    /// </summary>
+    public interface IState
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-
-        protected override void OnSourceInitialized(EventArgs e)
-        {
-            base.OnSourceInitialized(e);
-            ServiceStorage.Resolve<IDevice>().SetNotificationRecipient(this);
-        }
+        ObservableProperty<bool> IsConnectedToDevice { get; }
     }
 }

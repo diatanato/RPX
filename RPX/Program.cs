@@ -25,25 +25,15 @@ using System;
 
 namespace RPX
 {
-    using Interfaces;
-
-    /************************************************************************
-    *                                                                       *
-    *                                                                       *
-    *                                                                       *
-    ************************************************************************/
-    
-    public partial class MainWindow
+    class Program
     {
-        public MainWindow()
+        [STAThread]
+        static void Main(String[] args)
         {
-            InitializeComponent();
-        }
+            var application = new App();
 
-        protected override void OnSourceInitialized(EventArgs e)
-        {
-            base.OnSourceInitialized(e);
-            ServiceStorage.Resolve<IDevice>().SetNotificationRecipient(this);
+            application.InitializeComponent();
+            application.Run();
         }
     }
 }

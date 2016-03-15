@@ -22,28 +22,24 @@
 */
 
 using System;
+using System.Windows;
 
-namespace RPX
+using Hmg.Comm;
+
+namespace RPX.Interfaces
 {
-    using Interfaces;
-
-    /************************************************************************
-    *                                                                       *
-    *                                                                       *
-    *                                                                       *
-    ************************************************************************/
-    
-    public partial class MainWindow
+    /// <summary>
+    /// Транспортный уровень - обмен сообщениями с устройством
+    /// </summary>
+    public interface IDevice : IDisposable
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        void SetNotificationRecipient(Window window);
 
-        protected override void OnSourceInitialized(EventArgs e)
-        {
-            base.OnSourceInitialized(e);
-            ServiceStorage.Resolve<IDevice>().SetNotificationRecipient(this);
-        }
+        event EventHandler Connected;
+        event EventHandler Disconnected;
+
+        event EventHandler<ProcedureInMessage> ReceivedMessage;
+
+        void SendMessage(ProcedureOutMessage message);
     }
 }

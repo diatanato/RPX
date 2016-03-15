@@ -23,27 +23,16 @@
 
 using System;
 
-namespace RPX
+namespace RPX.Interfaces
 {
-    using Interfaces;
-
-    /************************************************************************
-    *                                                                       *
-    *                                                                       *
-    *                                                                       *
-    ************************************************************************/
-    
-    public partial class MainWindow
+    /// <summary>
+    /// Логика взаимодействия приложения и процессора
+    /// </summary>
+    public interface IService
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        bool IsConnected { get; }
 
-        protected override void OnSourceInitialized(EventArgs e)
-        {
-            base.OnSourceInitialized(e);
-            ServiceStorage.Resolve<IDevice>().SetNotificationRecipient(this);
-        }
+        event EventHandler ConnectedToDevice;
+        event EventHandler DisconnectedFromDevice;
     }
 }
