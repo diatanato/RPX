@@ -86,7 +86,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Devices\DeviceClient.cs" />
-    <Compile Include="Interfaces\ITransport.cs" />
+    <Compile Include="Interfaces\IDevice.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
