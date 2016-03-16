@@ -28,7 +28,7 @@ namespace RPX.UI.Model
 
     public class DevState : IState
     {
-        public ObservableProperty<bool> IsConnectedToDevice { get; private set; }
+        public ObservableProperty<bool> IsConnectedToDevice { get; }
         
         public DevState()
         {

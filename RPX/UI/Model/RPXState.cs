@@ -32,7 +32,7 @@ namespace RPX.UI.Model
     {
         private readonly IService mService = ServiceStorage.Resolve<IService>();
 
-        public ObservableProperty<bool> IsConnectedToDevice { get; private set; }
+        public ObservableProperty<bool> IsConnectedToDevice { get; }
        
         public RPXState()
         {

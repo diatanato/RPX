@@ -29,7 +29,7 @@ using System.Windows;
 namespace RPX.UI.ViewModels
 {
     using Interfaces;
-    using UI.Model;
+    using Model;
 
     /************************************************************************
     *                                                                       *
@@ -37,11 +37,11 @@ namespace RPX.UI.ViewModels
     *                                                                       *
     ************************************************************************/
 
-    public abstract class ViewModel : INotifyPropertyChanged 
+    public abstract class BaseModel : INotifyPropertyChanged 
     {
         protected static IState Model { get; private set; }
 
-        static ViewModel()
+        static BaseModel()
         {
             Model = IsInDessignMode ? new DevState() : ServiceStorage.Resolve<IState>();
         }

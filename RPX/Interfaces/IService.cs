@@ -22,14 +22,17 @@
 */
 
 using System;
+using System.Windows;
 
 namespace RPX.Interfaces
 {
     /// <summary>
     /// Логика взаимодействия приложения и процессора
     /// </summary>
-    public interface IService
+    public interface IService : IDisposable
     {
+        void SetNotificationRecipient(Window window);
+
         bool IsConnected { get; }
 
         event EventHandler ConnectedToDevice;

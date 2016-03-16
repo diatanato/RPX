@@ -22,17 +22,24 @@
 */
 
 using System;
+using System.Runtime.InteropServices;
+using System.Windows;
+using System.Windows.Interop;
 
 using Hmg.Comm;
+using Microsoft.Win32;
 
 namespace RPX.Devices
 {
     using Interfaces;
+    using Utils;
 
-    public class MessageService : IService
+    public class MessageService : IService, IDisposable
     {
         private readonly IDevice mDevice = ServiceStorage.Resolve<IDevice>();
-        
+
+        private IntPtr mDeviceNotifyHandle;
+
         public bool IsConnected { get; private set; }
 
         public event EventHandler ConnectedToDevice;
@@ -40,28 +47,129 @@ namespace RPX.Devices
 
         public MessageService()
         {
-            mDevice.Connected += delegate
-            {
-                if (IsConnected)
-                    return;
-                IsConnected = true;
-                
-                if (ConnectedToDevice != null) ConnectedToDevice(this, EventArgs.Empty);
-            };
-            mDevice.Disconnected += delegate
-            {
-                if (!IsConnected)
-                    return;
-                IsConnected = false;
-                
-                if (DisconnectedFromDevice != null) DisconnectedFromDevice(this, EventArgs.Empty);
-            };
+            mDevice.ErrorReported += ErrorReported;
             mDevice.ReceivedMessage += MessageArrived;
+
+            if (mDevice.Connect())
+            {
+                OnConnected();
+            }
+        }
+
+        private void OnConnected()
+        {
+            if (IsConnected)
+                return;
+            IsConnected = true;
+
+            ConnectedToDevice?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void OnDisconnected()
+        {
+            if (!IsConnected)
+                return;
+            IsConnected = false;
+
+            DisconnectedFromDevice?.Invoke(this, EventArgs.Empty);
         }
 
         private void MessageArrived(object sender, ProcedureInMessage message)
         {
             
         }
+
+        private void ErrorReported(object sender, String error)
+        {
+            
+        }
+
+        public void Dispose()
+        {
+            WinAPI.UnregisterDeviceNotification(mDeviceNotifyHandle);
+        }
+
+        #region возможность отслеживания подключения процессора
+
+        /************************************************************************
+        *                                                                       *
+        *  Возможность отслеживания подключения процессора                      *
+        *                                                                       *
+        ************************************************************************/
+
+        private const int WM_DEVICECHANGE = 0x0219;
+
+        private const int DBT_DEVTYP_DEVICEINTERFACE = 0x0005;
+        private const int DBT_DEVICEARRIVAL          = 0x8000;
+        private const int DBT_DEVICEREMOVECOMPLETE   = 0x8004;
+
+        private const int DEVICE_NOTIFY_ALL_INTERFACE_CLASSES = 0x00004;
+
+        public void SetNotificationRecipient(Window window)
+        {
+            HwndSource hwnd = PresentationSource.FromVisual(window) as HwndSource;
+
+            if (hwnd != null)
+            {
+                hwnd.AddHook(WndProc);
+
+                DEV_BROADCAST_DEVICEINTERFACE deviceInterface = new DEV_BROADCAST_DEVICEINTERFACE();
+                int size = Marshal.SizeOf(deviceInterface);
+                deviceInterface.dbcc_size = size;
+                deviceInterface.dbcc_devicetype = DBT_DEVTYP_DEVICEINTERFACE;
+                deviceInterface.dbcc_classguid = new Guid("{a5dcbf10-6530-11d2-901f-00c04fb951ed}");
+                IntPtr buffer = Marshal.AllocHGlobal(size);
+                Marshal.StructureToPtr(deviceInterface, buffer, true);
+
+                mDeviceNotifyHandle = WinAPI.RegisterDeviceNotification(hwnd.Handle, buffer, DEVICE_NOTIFY_ALL_INTERFACE_CLASSES);
+            }
+        }
+
+        private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+            if (msg == WM_DEVICECHANGE)
+            {
+                switch (wParam.ToInt32())
+                {
+                    case DBT_DEVICEARRIVAL:
+                    if (Marshal.ReadInt32(lParam, 4) == DBT_DEVTYP_DEVICEINTERFACE)
+                    {
+                        MessageBox.Show(GetDeviceName((DEV_BROADCAST_DEVICEINTERFACE)Marshal.PtrToStructure(lParam, typeof(DEV_BROADCAST_DEVICEINTERFACE))));
+                    }
+                    break;
+                    case DBT_DEVICEREMOVECOMPLETE:
+                    if (Marshal.ReadInt32(lParam, 4) == DBT_DEVTYP_DEVICEINTERFACE)
+                    {
+                        MessageBox.Show(GetDeviceName((DEV_BROADCAST_DEVICEINTERFACE)Marshal.PtrToStructure(lParam, typeof(DEV_BROADCAST_DEVICEINTERFACE))));
+                    }
+                    break;
+                }
+            }
+            return IntPtr.Zero;
+        }
+
+        private static string GetDeviceName(DEV_BROADCAST_DEVICEINTERFACE dvi)
+        {
+            string[] parts = dvi.dbcc_name.Split('#');
+            if (parts.Length >= 3)
+            {
+                string DeviceType = parts[0].Substring(parts[0].IndexOf(@"?\") + 2);
+                string DeviceInstanceId = parts[1];
+                string DeviceUniqueID = parts[2];
+                string RegPath = @"SYSTEM\CurrentControlSet\Enum\" + DeviceType + "\\" + DeviceInstanceId + "\\" + DeviceUniqueID;
+                RegistryKey key = Registry.LocalMachine.OpenSubKey(RegPath);
+                if (key != null)
+                {
+                    object result = key.GetValue("FriendlyName");
+                    if (result != null)
+                        return result.ToString();
+                    result = key.GetValue("DeviceDesc");
+                    if (result != null)
+                        return result.ToString();
+                }
+            }
+            return String.Empty;
+        }
+        #endregion
     }
 }

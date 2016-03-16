@@ -22,21 +22,27 @@
 */
 
 using System;
+using System.Runtime.InteropServices;
 
-using Hmg.Comm;
-
-namespace RPX.Interfaces
+namespace RPX.Utils
 {
-    /// <summary>
-    /// Транспортный уровень - обмен сообщениями с устройством
-    /// </summary>
-    public interface IDevice : IDisposable
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+    public struct DEV_BROADCAST_DEVICEINTERFACE
     {
-        bool Connect();
-        void Disconnect();
-        void SendMessage(ProcedureOutMessage message);
+        public int    dbcc_size;
+        public int    dbcc_devicetype;
+        public int    dbcc_reserved;
+        public Guid   dbcc_classguid;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 255)]
+        public string dbcc_name;
+    }
 
-        event EventHandler<String> ErrorReported;
-        event EventHandler<ProcedureInMessage> ReceivedMessage;
+    public class WinAPI
+    {
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern IntPtr RegisterDeviceNotification(IntPtr hRecipient, IntPtr filter, Int32 flags);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern uint UnregisterDeviceNotification(IntPtr hHandle);
     }
 }

@@ -63,20 +63,22 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Devices\MessageService.cs" />
+    <Compile Include="Interfaces\IDevice.cs" />
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Interfaces\IState.cs" />
     <Compile Include="ServiceStorage.cs" />
     <Compile Include="UI\Model\DevState.cs" />
     <Compile Include="UI\Model\RPXState.cs" />
     <Compile Include="UI\Utils\ObservableProperty.cs" />
+    <Compile Include="UI\ViewModels\BaseModel.cs" />
     <Compile Include="UI\ViewModels\StatusBarViewModel.cs" />
-    <Compile Include="UI\ViewModels\ViewModel.cs" />
     <Compile Include="UI\Views\Editor.xaml.cs">
       <DependentUpon>Editor.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Views\StatusBar.xaml.cs">
       <DependentUpon>StatusBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\WinAPI.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -86,7 +88,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Devices\DeviceClient.cs" />
-    <Compile Include="Interfaces\IDevice.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

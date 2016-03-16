@@ -25,16 +25,16 @@ using RPX.UI.Utils;
 
 namespace RPX.UI.ViewModels
 {
-    public class StatusBarViewModel : ViewModel
+    public class StatusBarViewModel : BaseModel
     {
-        public ObservableProperty<bool> ConnectionStatus { get; private set; }
+        public ObservableProperty<bool> ConnectionStatus { get; }
 
         public StatusBarViewModel()
         {
             ConnectionStatus = new ObservableProperty<bool>();
 
             SetConnectionStatus();
-            Model.IsConnectedToDevice.Changed += ((sender, e) => SetConnectionStatus());
+            Model.IsConnectedToDevice.Changed += (sender, e) => SetConnectionStatus();
         }
 
         private void SetConnectionStatus()

@@ -40,7 +40,7 @@ namespace RPX
     /// <summary>
     /// Логика взаимодействия для App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App
     {
         public App()
         {
@@ -62,6 +62,7 @@ namespace RPX
         private void Application_Exit(object sender, ExitEventArgs e)
         {
             ServiceStorage.Resolve<IDevice>().Dispose();
+            ServiceStorage.Resolve<IService>().Dispose();
         }
     }
 }
