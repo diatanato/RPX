@@ -33,10 +33,13 @@ namespace RPX.Devices
     {
         private DigiComm mComm;
 
+        public event EventHandler Connected;
+        public event EventHandler Disconnected;
+
         public event EventHandler<String> ErrorReported;
         public event EventHandler<ProcedureInMessage> ReceivedMessage;
 
-        public bool Connect()
+        public void Connect()
         {
             var ports = DigiComm.CreatePorts(new[] { "DigiTech RP" });
 
@@ -46,10 +49,9 @@ namespace RPX.Devices
 
                 mComm.ErrorReported += ErrReported;
                 mComm.MessageReceived += MsgReceived;
-
-                return true;
+                
+                OnConnected();
             }
-            return false;
         }
 
         public void Disconnect()
@@ -58,7 +60,19 @@ namespace RPX.Devices
             {
                 mComm.Close();
                 mComm = null;
+
+                OnDisconnected();
             }
+        }
+
+        private void OnConnected()
+        {
+            Connected?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void OnDisconnected()
+        {
+            Disconnected?.Invoke(this, EventArgs.Empty);
         }
 
         private void ErrReported(object sender, CommInputErrorEventArgs e)

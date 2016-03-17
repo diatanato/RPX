@@ -48,7 +48,7 @@ namespace RPX.UI.ViewModels
 
         static bool IsInDessignMode
         {
-            get { return (bool)(DependencyPropertyDescriptor.FromProperty(DesignerProperties.IsInDesignModeProperty, typeof(FrameworkElement)).Metadata.DefaultValue); }
+            get { return (bool)DependencyPropertyDescriptor.FromProperty(DesignerProperties.IsInDesignModeProperty, typeof(FrameworkElement)).Metadata.DefaultValue; }
         }
 
         #region INotifyPropertyChanged

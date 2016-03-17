@@ -22,6 +22,9 @@
 */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
@@ -32,11 +35,14 @@ using Microsoft.Win32;
 namespace RPX.Devices
 {
     using Interfaces;
+    using Messages;
+    using Messages.Handlers;
     using Utils;
 
-    public class MessageService : IService, IDisposable
+    public class MessageService : IService
     {
-        private readonly IDevice mDevice = ServiceStorage.Resolve<IDevice>();
+        private readonly IDevice mDevice;
+        private readonly Dictionary<CommMsgID, MessageHandler> mMessageHandlers;
 
         private IntPtr mDeviceNotifyHandle;
 
@@ -47,36 +53,56 @@ namespace RPX.Devices
 
         public MessageService()
         {
+            mDevice = ServiceStorage.Resolve<IDevice>();
+            mMessageHandlers = new Dictionary<CommMsgID, MessageHandler>();
+
+            var handlers =
+                Assembly.GetExecutingAssembly()
+                    .GetTypes()
+                    .Where(t => t.IsSubclassOf(typeof(MessageHandler)))
+                    .Select(handler => Activator.CreateInstance(handler) as MessageHandler);
+
+            foreach (var handler in handlers)
+            {
+                mMessageHandlers.Add(handler.MessageType, handler);
+            }
             mDevice.ErrorReported += ErrorReported;
             mDevice.ReceivedMessage += MessageArrived;
 
-            if (mDevice.Connect())
+            mDevice.Connected += delegate
             {
-                OnConnected();
-            }
-        }
+                if (IsConnected)
+                    return;
+                IsConnected = true;
 
-        private void OnConnected()
-        {
-            if (IsConnected)
-                return;
-            IsConnected = true;
+                mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqIdentity, new byte[] { 0x00, 0x00, 0x00 }));
+                mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqConfig));
+                mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqGlobalParams));
+                mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.RxParamValue, new byte[] { 0x30, 0x0A, 0x00, 0x01 }));
+                mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqBankPresetNames, new byte[] { 0x01 }));
+                mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqBankPresetNames, new byte[] { 0x00 }));
+                mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqPreset, new byte[] { 0x04, 0x00 }));
+                mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqModifierLinkablesList, new byte[] { 0x00, 0x01 }));
+                
+                ConnectedToDevice?.Invoke(this, EventArgs.Empty);
+            };
+            mDevice.Disconnected += delegate
+            {
+                if (!IsConnected)
+                    return;
+                IsConnected = false;
 
-            ConnectedToDevice?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void OnDisconnected()
-        {
-            if (!IsConnected)
-                return;
-            IsConnected = false;
-
-            DisconnectedFromDevice?.Invoke(this, EventArgs.Empty);
+                DisconnectedFromDevice?.Invoke(this, EventArgs.Empty);
+            };
+            mDevice.Connect();
         }
 
         private void MessageArrived(object sender, ProcedureInMessage message)
         {
-            
+            if (mMessageHandlers.ContainsKey(message.ID))
+            {
+                mMessageHandlers[message.ID].HandleMessage(message);
+            }
         }
 
         private void ErrorReported(object sender, String error)

@@ -37,14 +37,11 @@ namespace RPX
     *                                                                       *
     ************************************************************************/
 
-    /// <summary>
-    /// Логика взаимодействия для App.xaml
-    /// </summary>
     public partial class App
     {
         public App()
         {
-            CultureInfo culture = CultureInfo.InvariantCulture;
+            var culture = CultureInfo.InvariantCulture;
 
             Thread.CurrentThread.CurrentCulture   = culture;
             Thread.CurrentThread.CurrentUICulture = culture;

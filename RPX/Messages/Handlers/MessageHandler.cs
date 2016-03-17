@@ -21,25 +21,23 @@
 ===========================================================================
 */
 
-using System;
-
 using Hmg.Comm;
 
-namespace RPX.Interfaces
+namespace RPX.Messages.Handlers
 {
-    /// <summary>
-    /// Транспортный уровень - обмен сообщениями с устройством
-    /// </summary>
-    public interface IDevice : IDisposable
+    using Interfaces;
+
+    public abstract class MessageHandler
     {
-        void Connect();
-        void Disconnect();
-        void SendMessage(ProcedureOutMessage message);
+        public CommMsgID MessageType { get; private set; }
+        protected IState Model { get; private set; }
 
-        event EventHandler Connected;
-        event EventHandler Disconnected;
+        protected MessageHandler(CommMsgID id)
+        {
+            MessageType = id;
+            Model = ServiceStorage.Resolve<IState>();
+        }
 
-        event EventHandler<String> ErrorReported;
-        event EventHandler<ProcedureInMessage> ReceivedMessage;
+        public abstract void HandleMessage(ProcedureInMessage message);
     }
 }
