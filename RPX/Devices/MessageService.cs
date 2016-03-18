@@ -41,8 +41,8 @@ namespace RPX.Devices
 
     public class MessageService : IService
     {
-        private readonly IDevice mDevice;
-        private readonly Dictionary<CommMsgID, MessageHandler> mMessageHandlers;
+        private IDevice mDevice;
+        private Dictionary<CommMsgID, MessageHandler> mMessageHandlers;
 
         private IntPtr mDeviceNotifyHandle;
 
@@ -54,21 +54,7 @@ namespace RPX.Devices
         public MessageService()
         {
             mDevice = ServiceStorage.Resolve<IDevice>();
-            mMessageHandlers = new Dictionary<CommMsgID, MessageHandler>();
-
-            var handlers =
-                Assembly.GetExecutingAssembly()
-                    .GetTypes()
-                    .Where(t => t.IsSubclassOf(typeof(MessageHandler)))
-                    .Select(handler => Activator.CreateInstance(handler) as MessageHandler);
-
-            foreach (var handler in handlers)
-            {
-                mMessageHandlers.Add(handler.MessageType, handler);
-            }
-            mDevice.ErrorReported += ErrorReported;
-            mDevice.ReceivedMessage += MessageArrived;
-
+            
             mDevice.Connected += delegate
             {
                 if (IsConnected)
@@ -79,8 +65,8 @@ namespace RPX.Devices
                 mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqConfig));
                 mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqGlobalParams));
                 mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.RxParamValue, new byte[] { 0x30, 0x0A, 0x00, 0x01 }));
-                mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqBankPresetNames, new byte[] { 0x01 }));
                 mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqBankPresetNames, new byte[] { 0x00 }));
+                mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqBankPresetNames, new byte[] { 0x01 }));
                 mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqPreset, new byte[] { 0x04, 0x00 }));
                 mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqModifierLinkablesList, new byte[] { 0x00, 0x01 }));
                 
@@ -94,11 +80,27 @@ namespace RPX.Devices
 
                 DisconnectedFromDevice?.Invoke(this, EventArgs.Empty);
             };
-            mDevice.Connect();
+            mDevice.ErrorReported += ErrorReported;
+            mDevice.ReceivedMessage += MessageArrived;
         }
 
         private void MessageArrived(object sender, ProcedureInMessage message)
         {
+            if (mMessageHandlers == null)
+            {
+                mMessageHandlers = new Dictionary<CommMsgID, MessageHandler>();
+
+                var handlers =
+                    Assembly.GetExecutingAssembly()
+                        .GetTypes()
+                        .Where(t => t.IsSubclassOf(typeof(MessageHandler)))
+                        .Select(handler => Activator.CreateInstance(handler) as MessageHandler);
+
+                foreach (var handler in handlers)
+                {
+                    mMessageHandlers.Add(handler.MessageType, handler);
+                }
+            }
             if (mMessageHandlers.ContainsKey(message.ID))
             {
                 mMessageHandlers[message.ID].HandleMessage(message);

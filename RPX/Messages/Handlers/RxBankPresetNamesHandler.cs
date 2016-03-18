@@ -21,30 +21,32 @@
 ===========================================================================
 */
 
-using System;
+using Hmg.Comm;
 
-namespace RPX
+namespace RPX.Messages.Handlers
 {
-    using Interfaces;
+    using Presets;
 
     /************************************************************************
     *                                                                       *
-    *                                                                       *
+    *  Получаем список пресетов в запрошенном банке                         *
     *                                                                       *
     ************************************************************************/
-    
-    public partial class MainWindow
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
 
-        protected override void OnSourceInitialized(EventArgs e)
+    public class RxBankPresetNamesHandler : MessageHandler
+    {
+        public RxBankPresetNamesHandler() : base(CommMsgID.RxBankPresetNames) { }
+
+        public override void HandleMessage(ProcedureInMessage message)
         {
-            base.OnSourceInitialized(e);
-            ServiceStorage.Resolve<IDevice>().Connect();
-            ServiceStorage.Resolve<IService>().SetNotificationRecipient(this);
+            byte bank  = message.ReadByte();
+            byte count = message.ReadByte();
+
+            for (byte index = 0; index < count; ++index)
+            {
+                Model.Presets.Add(new PresetLibraryItem { Name = message.ReadString().Trim(), Location = new PresetLocation(bank, index) });
+            }
         }
     }
 }
+

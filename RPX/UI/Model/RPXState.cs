@@ -22,10 +22,12 @@
 */
 
 using System;
+using System.Collections.ObjectModel;
 
 namespace RPX.UI.Model
 {
     using Interfaces;
+    using Presets;
     using Utils;
 
     public class RPXState : IState
@@ -33,10 +35,11 @@ namespace RPX.UI.Model
         private readonly IService mService = ServiceStorage.Resolve<IService>();
 
         public ObservableProperty<bool> IsConnectedToDevice { get; }
-       
+        public ObservableCollection<PresetLibraryItem> Presets { get; }
+
         public RPXState()
         {
-            
+            Presets = new ObservableCollection<PresetLibraryItem>();
             IsConnectedToDevice = new ObservableProperty<bool>(mService.IsConnected);
             
             mService.ConnectedToDevice += ConnectedToDevice;
@@ -51,6 +54,8 @@ namespace RPX.UI.Model
         private void DisconnectedFromDevice(object sender, EventArgs e)
         {
             IsConnectedToDevice.Value = false;
+
+            Presets.Clear();
         }
     }
 }

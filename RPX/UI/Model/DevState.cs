@@ -21,17 +21,22 @@
 ===========================================================================
 */
 
+using System.Collections.ObjectModel;
+
 namespace RPX.UI.Model
 {
     using Interfaces;
+    using Presets;
     using Utils;
 
     public class DevState : IState
     {
         public ObservableProperty<bool> IsConnectedToDevice { get; }
-        
+        public ObservableCollection<PresetLibraryItem> Presets { get; }
+
         public DevState()
         {
+            Presets = new ObservableCollection<PresetLibraryItem>();
             IsConnectedToDevice = new ObservableProperty<bool>(false);
         }
     }

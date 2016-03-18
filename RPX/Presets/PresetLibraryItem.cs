@@ -21,30 +21,11 @@
 ===========================================================================
 */
 
-using System;
-
-namespace RPX
+namespace RPX.Presets
 {
-    using Interfaces;
-
-    /************************************************************************
-    *                                                                       *
-    *                                                                       *
-    *                                                                       *
-    ************************************************************************/
-    
-    public partial class MainWindow
+    public class PresetLibraryItem
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-
-        protected override void OnSourceInitialized(EventArgs e)
-        {
-            base.OnSourceInitialized(e);
-            ServiceStorage.Resolve<IDevice>().Connect();
-            ServiceStorage.Resolve<IService>().SetNotificationRecipient(this);
-        }
+        public string Name { get; set; }
+        public PresetLocation Location { get; set; }
     }
 }

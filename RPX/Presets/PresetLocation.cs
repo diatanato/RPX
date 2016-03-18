@@ -23,28 +23,19 @@
 
 using System;
 
-namespace RPX
+namespace RPX.Presets
 {
-    using Interfaces;
-
-    /************************************************************************
-    *                                                                       *
-    *                                                                       *
-    *                                                                       *
-    ************************************************************************/
-    
-    public partial class MainWindow
+    public class PresetLocation
     {
-        public MainWindow()
+        public Bank Bank { get; set; }
+        public Byte Slot { get; set; }
+        
+        public PresetLocation(Bank bank, Byte slot)
         {
-            InitializeComponent();
+            Bank = bank;
+            Slot = slot;
         }
 
-        protected override void OnSourceInitialized(EventArgs e)
-        {
-            base.OnSourceInitialized(e);
-            ServiceStorage.Resolve<IDevice>().Connect();
-            ServiceStorage.Resolve<IService>().SetNotificationRecipient(this);
-        }
+        public PresetLocation(Byte bank, Byte slot) : this((Bank)bank, slot) { }
     }
 }

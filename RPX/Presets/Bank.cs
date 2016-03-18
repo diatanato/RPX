@@ -21,30 +21,17 @@
 ===========================================================================
 */
 
-using System;
-
-namespace RPX
+namespace RPX.Presets
 {
-    using Interfaces;
-
-    /************************************************************************
-    *                                                                       *
-    *                                                                       *
-    *                                                                       *
-    ************************************************************************/
-    
-    public partial class MainWindow
+    public enum Bank : byte
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-
-        protected override void OnSourceInitialized(EventArgs e)
-        {
-            base.OnSourceInitialized(e);
-            ServiceStorage.Resolve<IDevice>().Connect();
-            ServiceStorage.Resolve<IService>().SetNotificationRecipient(this);
-        }
+        Factory,
+        User,
+        Artist,
+        MediaCard,
+        EditBuffer,
+        Factory2,
+        External,
+        Local,
     }
 }

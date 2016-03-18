@@ -21,8 +21,11 @@
 ===========================================================================
 */
 
+using System.Collections.ObjectModel;
+
 namespace RPX.Interfaces
 {
+    using Presets;
     using UI.Utils;
 
     /// <summary>
@@ -31,5 +34,6 @@ namespace RPX.Interfaces
     public interface IState
     {
         ObservableProperty<bool> IsConnectedToDevice { get; }
+        ObservableCollection<PresetLibraryItem> Presets { get; }
     }
 }

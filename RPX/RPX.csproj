@@ -66,7 +66,11 @@
     <Compile Include="Interfaces\IDevice.cs" />
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Interfaces\IState.cs" />
+    <Compile Include="Messages\Handlers\RxBankPresetNamesHandler.cs" />
     <Compile Include="Messages\Handlers\MessageHandler.cs" />
+    <Compile Include="Presets\Bank.cs" />
+    <Compile Include="Presets\PresetLocation.cs" />
+    <Compile Include="Presets\PresetLibraryItem.cs" />
     <Compile Include="ServiceStorage.cs" />
     <Compile Include="UI\Model\DevState.cs" />
     <Compile Include="UI\Model\RPXState.cs" />
