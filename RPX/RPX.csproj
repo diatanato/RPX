@@ -66,8 +66,13 @@
     <Compile Include="Interfaces\IDevice.cs" />
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Interfaces\IState.cs" />
+    <Compile Include="Messages\GetGlobalParams.cs" />
+    <Compile Include="Messages\GetConfig.cs" />
+    <Compile Include="Messages\GetPreset.cs" />
+    <Compile Include="Messages\GetBankPresetNames.cs" />
     <Compile Include="Messages\Handlers\RxBankPresetNamesHandler.cs" />
     <Compile Include="Messages\Handlers\MessageHandler.cs" />
+    <Compile Include="Messages\GetIdentity.cs" />
     <Compile Include="Presets\Bank.cs" />
     <Compile Include="Presets\PresetLocation.cs" />
     <Compile Include="Presets\PresetLibraryItem.cs" />

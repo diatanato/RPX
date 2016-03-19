@@ -37,6 +37,7 @@ namespace RPX.Devices
     using Interfaces;
     using Messages;
     using Messages.Handlers;
+    using Presets;
     using Utils;
 
     public class MessageService : IService
@@ -61,13 +62,13 @@ namespace RPX.Devices
                     return;
                 IsConnected = true;
 
-                mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqIdentity, new byte[] { 0x00, 0x00, 0x00 }));
-                mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqConfig));
-                mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqGlobalParams));
+                mDevice.SendMessage(new GetIdentity());
+                mDevice.SendMessage(new GetConfig());
+                mDevice.SendMessage(new GetGlobalParams());
                 mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.RxParamValue, new byte[] { 0x30, 0x0A, 0x00, 0x01 }));
-                mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqBankPresetNames, new byte[] { 0x00 }));
-                mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqBankPresetNames, new byte[] { 0x01 }));
-                mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqPreset, new byte[] { 0x04, 0x00 }));
+                mDevice.SendMessage(new GetBankPresetNames(Bank.Factory));
+                mDevice.SendMessage(new GetBankPresetNames(Bank.User));
+                mDevice.SendMessage(new GetPreset(new PresetLocation(Bank.EditBuffer, 0)));
                 mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqModifierLinkablesList, new byte[] { 0x00, 0x01 }));
                 
                 ConnectedToDevice?.Invoke(this, EventArgs.Empty);
