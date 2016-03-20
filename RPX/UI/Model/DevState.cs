@@ -36,7 +36,12 @@ namespace RPX.UI.Model
 
         public DevState()
         {
-            Presets = new ObservableCollection<PresetLibraryItem>();
+            Presets = new ObservableCollection<PresetLibraryItem>(new[]
+            {
+                new PresetLibraryItem { Name = "Preset Name", Location = new PresetLocation(Bank.User,    0) },
+                new PresetLibraryItem { Name = "Preset Name", Location = new PresetLocation(Bank.Factory, 0) },
+                new PresetLibraryItem { Name = "Preset Name", Location = new PresetLocation(Bank.Local,   0) },
+            });
             IsConnectedToDevice = new ObservableProperty<bool>(false);
         }
     }

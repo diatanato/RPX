@@ -21,23 +21,23 @@
 ===========================================================================
 */
 
-using System;
-using System.Windows;
-
-namespace RPX.Interfaces
+namespace RPX.UI.ViewModels
 {
-    /// <summary>
-    /// Логика взаимодействия приложения и процессора
-    /// </summary>
-    public interface IService : IDisposable
+    using Presets;
+
+    /************************************************************************
+    *                                                                       *
+    *                                                                       *
+    *                                                                       *
+    ************************************************************************/
+
+    public class ControlPanelViewModel : BaseModel
     {
-        void SetNotificationRecipient(Window window);
+        public CollectionViewModel<PresetLibraryItem> Presets { get; private set; }
 
-        bool IsConnected { get; }
-
-        event EventHandler ConnectedToDevice;
-        event EventHandler DisconnectedFromDevice;
-
-        void SyncPresetLibrary();
+        public ControlPanelViewModel()
+        {
+            Presets = new CollectionViewModel<PresetLibraryItem>(Model.Presets);
+        }
     }
 }

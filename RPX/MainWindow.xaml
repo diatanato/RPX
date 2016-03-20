@@ -8,10 +8,12 @@
         MinWidth="1000" MinHeight="700" WindowStartupLocation="CenterScreen" Title="RPX">
     <Grid ShowGridLines="True">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <v:Editor/>
-        <v:StatusBar Grid.Row="1"/>
+        <v:ControlPanel/>
+        <v:Editor Grid.Row="1"/>
+        <v:StatusBar Grid.Row="2"/>
     </Grid>
 </Window>

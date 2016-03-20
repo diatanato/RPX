@@ -44,18 +44,29 @@ namespace RPX.UI.Model
             
             mService.ConnectedToDevice += ConnectedToDevice;
             mService.DisconnectedFromDevice += DisconnectedFromDevice;
+
+            SyncPresetLibrary();
         }
 
         private void ConnectedToDevice(object sender, EventArgs e)
         {
             IsConnectedToDevice.Value = true;
+
+            SyncPresetLibrary();
         }
 
         private void DisconnectedFromDevice(object sender, EventArgs e)
         {
             IsConnectedToDevice.Value = false;
 
+            SyncPresetLibrary();
+        }
+
+        private void SyncPresetLibrary()
+        {
             Presets.Clear();
+
+            mService.SyncPresetLibrary();
         }
     }
 }

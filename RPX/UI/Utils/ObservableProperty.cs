@@ -63,7 +63,7 @@ namespace RPX.UI.Utils
 
         public ObservableProperty()
         {
-            Changed += ((sender, e) => PropertyChanged(this, new PropertyChangedEventArgs("Value")));
+            Changed += (sender, e) => PropertyChanged(this, new PropertyChangedEventArgs(nameof(Value)));
         }
 
         public ObservableProperty(T value) : this()

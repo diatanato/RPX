@@ -28,9 +28,9 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
+using System.Windows.Threading;
 
 using Hmg.Comm;
-using Microsoft.Win32;
 
 namespace RPX.Devices
 {
@@ -43,6 +43,7 @@ namespace RPX.Devices
     public class MessageService : IService
     {
         private IDevice mDevice;
+        private Dispatcher mUIThread;
         private Dictionary<CommMsgID, MessageHandler> mMessageHandlers;
 
         private IntPtr mDeviceNotifyHandle;
@@ -66,8 +67,8 @@ namespace RPX.Devices
                 mDevice.SendMessage(new GetConfig());
                 mDevice.SendMessage(new GetGlobalParams());
                 mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.RxParamValue, new byte[] { 0x30, 0x0A, 0x00, 0x01 }));
-                mDevice.SendMessage(new GetBankPresetNames(Bank.Factory));
-                mDevice.SendMessage(new GetBankPresetNames(Bank.User));
+                //mDevice.SendMessage(new GetBankPresetNames(Bank.Factory));
+                //mDevice.SendMessage(new GetBankPresetNames(Bank.User));
                 mDevice.SendMessage(new GetPreset(new PresetLocation(Bank.EditBuffer, 0)));
                 mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqModifierLinkablesList, new byte[] { 0x00, 0x01 }));
                 
@@ -104,7 +105,7 @@ namespace RPX.Devices
             }
             if (mMessageHandlers.ContainsKey(message.ID))
             {
-                mMessageHandlers[message.ID].HandleMessage(message);
+                mUIThread.BeginInvoke(DispatcherPriority.Normal, (Action)(() => mMessageHandlers[message.ID].HandleMessage(message)));
             }
         }
 
@@ -117,6 +118,15 @@ namespace RPX.Devices
         {
             WinAPI.UnregisterDeviceNotification(mDeviceNotifyHandle);
         }
+
+        #region исходящие
+
+        public void SyncPresetLibrary()
+        {
+            mDevice.SendMessage(new GetBankPresetNames(Bank.User));
+            mDevice.SendMessage(new GetBankPresetNames(Bank.Factory));
+        }
+        #endregion
 
         #region возможность отслеживания подключения процессора
 
@@ -136,6 +146,7 @@ namespace RPX.Devices
 
         public void SetNotificationRecipient(Window window)
         {
+            mUIThread = window.Dispatcher;
             HwndSource hwnd = PresentationSource.FromVisual(window) as HwndSource;
 
             if (hwnd != null)
@@ -163,41 +174,18 @@ namespace RPX.Devices
                     case DBT_DEVICEARRIVAL:
                     if (Marshal.ReadInt32(lParam, 4) == DBT_DEVTYP_DEVICEINTERFACE)
                     {
-                        MessageBox.Show(GetDeviceName((DEV_BROADCAST_DEVICEINTERFACE)Marshal.PtrToStructure(lParam, typeof(DEV_BROADCAST_DEVICEINTERFACE))));
+                        //MessageBox.Show(GetDeviceName((DEV_BROADCAST_DEVICEINTERFACE)Marshal.PtrToStructure(lParam, typeof(DEV_BROADCAST_DEVICEINTERFACE))));
                     }
                     break;
                     case DBT_DEVICEREMOVECOMPLETE:
                     if (Marshal.ReadInt32(lParam, 4) == DBT_DEVTYP_DEVICEINTERFACE)
                     {
-                        MessageBox.Show(GetDeviceName((DEV_BROADCAST_DEVICEINTERFACE)Marshal.PtrToStructure(lParam, typeof(DEV_BROADCAST_DEVICEINTERFACE))));
+                        //MessageBox.Show(GetDeviceName((DEV_BROADCAST_DEVICEINTERFACE)Marshal.PtrToStructure(lParam, typeof(DEV_BROADCAST_DEVICEINTERFACE))));
                     }
                     break;
                 }
             }
             return IntPtr.Zero;
-        }
-
-        private static string GetDeviceName(DEV_BROADCAST_DEVICEINTERFACE dvi)
-        {
-            string[] parts = dvi.dbcc_name.Split('#');
-            if (parts.Length >= 3)
-            {
-                string DeviceType = parts[0].Substring(parts[0].IndexOf(@"?\") + 2);
-                string DeviceInstanceId = parts[1];
-                string DeviceUniqueID = parts[2];
-                string RegPath = @"SYSTEM\CurrentControlSet\Enum\" + DeviceType + "\\" + DeviceInstanceId + "\\" + DeviceUniqueID;
-                RegistryKey key = Registry.LocalMachine.OpenSubKey(RegPath);
-                if (key != null)
-                {
-                    object result = key.GetValue("FriendlyName");
-                    if (result != null)
-                        return result.ToString();
-                    result = key.GetValue("DeviceDesc");
-                    if (result != null)
-                        return result.ToString();
-                }
-            }
-            return String.Empty;
         }
         #endregion
     }

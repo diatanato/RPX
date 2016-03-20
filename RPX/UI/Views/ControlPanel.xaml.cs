@@ -21,23 +21,19 @@
 ===========================================================================
 */
 
-using System;
-using System.Windows;
-
-namespace RPX.Interfaces
+namespace RPX.UI.Views
 {
-    /// <summary>
-    /// Логика взаимодействия приложения и процессора
-    /// </summary>
-    public interface IService : IDisposable
+    /************************************************************************
+    *                                                                       *
+    *                                                                       *
+    *                                                                       *
+    ************************************************************************/
+
+    public partial class ControlPanel
     {
-        void SetNotificationRecipient(Window window);
-
-        bool IsConnected { get; }
-
-        event EventHandler ConnectedToDevice;
-        event EventHandler DisconnectedFromDevice;
-
-        void SyncPresetLibrary();
+        public ControlPanel()
+        {
+            InitializeComponent();
+        }
     }
 }

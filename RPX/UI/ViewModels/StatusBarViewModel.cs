@@ -21,10 +21,10 @@
 ===========================================================================
 */
 
-using RPX.UI.Utils;
-
 namespace RPX.UI.ViewModels
 {
+    using Utils;
+
     public class StatusBarViewModel : BaseModel
     {
         public ObservableProperty<bool> ConnectionStatus { get; }

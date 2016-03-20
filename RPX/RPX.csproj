@@ -81,7 +81,12 @@
     <Compile Include="UI\Model\RPXState.cs" />
     <Compile Include="UI\Utils\ObservableProperty.cs" />
     <Compile Include="UI\ViewModels\BaseModel.cs" />
+    <Compile Include="UI\ViewModels\CollectionViewModel.cs" />
+    <Compile Include="UI\ViewModels\ControlPanelViewModel.cs" />
     <Compile Include="UI\ViewModels\StatusBarViewModel.cs" />
+    <Compile Include="UI\Views\ControlPanel.xaml.cs">
+      <DependentUpon>ControlPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Views\Editor.xaml.cs">
       <DependentUpon>Editor.xaml</DependentUpon>
     </Compile>
@@ -102,6 +107,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UI\Views\ControlPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Views\Editor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -139,7 +148,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="UI\Styles\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
