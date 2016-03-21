@@ -29,7 +29,12 @@ namespace RPX.Presets
     {
         public Bank Bank { get; set; }
         public Byte Slot { get; set; }
-        
+
+        public static PresetLocation EditBuffer
+        {
+            get { return new PresetLocation(Bank.EditBuffer, 0); }
+        }
+
         public PresetLocation(Bank bank, Byte slot)
         {
             Bank = bank;
@@ -37,5 +42,39 @@ namespace RPX.Presets
         }
 
         public PresetLocation(Byte bank, Byte slot) : this((Bank)bank, slot) { }
+
+        #region IEquatable
+
+        public static bool operator ==(PresetLocation a, PresetLocation b)
+        {
+            if (ReferenceEquals(a, b))
+                return true;
+
+            if (ReferenceEquals(a, null))
+                return false;
+
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(PresetLocation a, PresetLocation b)
+        {
+            return !(a == b);
+        }
+
+        public override bool Equals(object obj)
+        {
+            PresetLocation location = obj as PresetLocation;
+
+            if (ReferenceEquals(location, null))
+                return false;
+
+            return location.Bank == Bank && location.Slot == Slot;
+        }
+
+        public override int GetHashCode()
+        {
+            return (int)Bank << 16 | Slot;
+        }
+        #endregion
     }
 }

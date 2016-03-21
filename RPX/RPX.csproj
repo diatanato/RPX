@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CC7D41E4-6777-4C25-9974-6D84390835A9}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RPX</RootNamespace>
     <AssemblyName>RPX</AssemblyName>
@@ -66,14 +66,18 @@
     <Compile Include="Interfaces\IDevice.cs" />
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Interfaces\IState.cs" />
+    <Compile Include="Messages\SetPreset.cs" />
     <Compile Include="Messages\GetGlobalParams.cs" />
     <Compile Include="Messages\GetConfig.cs" />
     <Compile Include="Messages\GetPreset.cs" />
     <Compile Include="Messages\GetBankPresetNames.cs" />
+    <Compile Include="Messages\Handlers\RxChangeNotify.cs" />
     <Compile Include="Messages\Handlers\RxBankPresetNamesHandler.cs" />
     <Compile Include="Messages\Handlers\MessageHandler.cs" />
     <Compile Include="Messages\GetIdentity.cs" />
+    <Compile Include="Messages\Handlers\RxConfigHandler.cs" />
     <Compile Include="Presets\Bank.cs" />
+    <Compile Include="Presets\Preset.cs" />
     <Compile Include="Presets\PresetLocation.cs" />
     <Compile Include="Presets\PresetLibraryItem.cs" />
     <Compile Include="ServiceStorage.cs" />

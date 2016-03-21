@@ -21,22 +21,10 @@
 ===========================================================================
 */
 
-using System.Collections.ObjectModel;
-
-namespace RPX.Interfaces
+namespace RPX.Presets
 {
-    using Presets;
-    using UI.Utils;
-
-    /// <summary>
-    /// Модель состояния процессора
-    /// </summary>
-    public interface IState
+    public class Preset
     {
-        ObservableProperty<bool> IsConnectedToDevice { get; }
-        ObservableProperty<Preset> ActivePreset { get; }
-        ObservableCollection<PresetLibraryItem> Presets { get; }
-
-        void SelectPreset(PresetLocation location);
+        public PresetLocation Location { get; set; }
     }
 }

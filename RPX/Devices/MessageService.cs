@@ -69,7 +69,7 @@ namespace RPX.Devices
                 mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.RxParamValue, new byte[] { 0x30, 0x0A, 0x00, 0x01 }));
                 //mDevice.SendMessage(new GetBankPresetNames(Bank.Factory));
                 //mDevice.SendMessage(new GetBankPresetNames(Bank.User));
-                mDevice.SendMessage(new GetPreset(new PresetLocation(Bank.EditBuffer, 0)));
+                mDevice.SendMessage(new GetPreset(PresetLocation.EditBuffer));
                 mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqModifierLinkablesList, new byte[] { 0x00, 0x01 }));
                 
                 ConnectedToDevice?.Invoke(this, EventArgs.Empty);
@@ -107,6 +107,7 @@ namespace RPX.Devices
             {
                 mUIThread.BeginInvoke(DispatcherPriority.Normal, (Action)(() => mMessageHandlers[message.ID].HandleMessage(message)));
             }
+            Console.WriteLine(message.ID);
         }
 
         private void ErrorReported(object sender, String error)
@@ -125,6 +126,11 @@ namespace RPX.Devices
         {
             mDevice.SendMessage(new GetBankPresetNames(Bank.User));
             mDevice.SendMessage(new GetBankPresetNames(Bank.Factory));
+        }
+
+        public void SetPreset(PresetLocation location)
+        {
+            mDevice.SendMessage(new SetPreset(location));
         }
         #endregion
 

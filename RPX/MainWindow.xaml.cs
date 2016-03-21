@@ -43,8 +43,8 @@ namespace RPX
         protected override void OnSourceInitialized(EventArgs e)
         {
             base.OnSourceInitialized(e);
-            ServiceStorage.Resolve<IDevice>().Connect();
             ServiceStorage.Resolve<IService>().SetNotificationRecipient(this);
+            ServiceStorage.Resolve<IDevice>().Connect();
         }
     }
 }

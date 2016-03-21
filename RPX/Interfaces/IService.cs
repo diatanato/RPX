@@ -26,6 +26,8 @@ using System.Windows;
 
 namespace RPX.Interfaces
 {
+    using Presets;
+
     /// <summary>
     /// Логика взаимодействия приложения и процессора
     /// </summary>
@@ -39,5 +41,6 @@ namespace RPX.Interfaces
         event EventHandler DisconnectedFromDevice;
 
         void SyncPresetLibrary();
+        void SetPreset(PresetLocation location);
     }
 }

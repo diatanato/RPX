@@ -35,11 +35,13 @@ namespace RPX.UI.Model
         private readonly IService mService = ServiceStorage.Resolve<IService>();
 
         public ObservableProperty<bool> IsConnectedToDevice { get; }
+        public ObservableProperty<Preset> ActivePreset { get; }
         public ObservableCollection<PresetLibraryItem> Presets { get; }
 
         public RPXState()
         {
             Presets = new ObservableCollection<PresetLibraryItem>();
+            ActivePreset = new ObservableProperty<Preset>(new Preset());
             IsConnectedToDevice = new ObservableProperty<bool>(mService.IsConnected);
             
             mService.ConnectedToDevice += ConnectedToDevice;
@@ -60,6 +62,23 @@ namespace RPX.UI.Model
             IsConnectedToDevice.Value = false;
 
             SyncPresetLibrary();
+        }
+
+        public void SelectPreset(PresetLocation location)
+        {
+            if (location != null && location != ActivePreset.Value.Location)
+            {
+                ActivePreset.Value.Location = location;
+
+                switch (location.Bank)
+                {
+                    case Bank.User:
+                    case Bank.Factory:
+                        mService.SetPreset(location);
+                        break;
+                }
+                ActivePreset.NotifyPropertyChanged();
+            }
         }
 
         private void SyncPresetLibrary()

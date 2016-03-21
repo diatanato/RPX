@@ -21,12 +21,11 @@
 ===========================================================================
 */
 
-using System.Linq;
+using Hmg.Comm;
 
-namespace RPX.UI.ViewModels
+namespace RPX.Messages.Handlers
 {
     using Presets;
-    using Utils;
 
     /************************************************************************
     *                                                                       *
@@ -34,24 +33,17 @@ namespace RPX.UI.ViewModels
     *                                                                       *
     ************************************************************************/
 
-    public class ControlPanelViewModel : BaseModel
+    public class RxConfigHandler : MessageHandler
     {
-        public CollectionViewModel<PresetLibraryItem> Presets { get; private set; }
-        public ObservableProperty<PresetLibraryItem> SelectedPreset { get; private set; }
+        public RxConfigHandler() : base(CommMsgID.RxConfig) { }
 
-        public ControlPanelViewModel()
+        public override void HandleMessage(ProcedureInMessage message)
         {
-            Presets = new CollectionViewModel<PresetLibraryItem>(Model.Presets);
-            SelectedPreset = new ObservableProperty<PresetLibraryItem>();
-
-            SelectedPreset.Changed += (sender, e) =>
-            {
-                if (e.Value != null)
-                {
-                    Model.SelectPreset(e.Value.Location);
-                }
-            };
-            Model.ActivePreset.Changed += (sender, e) => SelectedPreset.Value = Presets.FirstOrDefault(p => p.Location == e.Value.Location);
+            message.ReadUshort();   // версия прошивки
+            message.ReadUshort();   // два байта чего-то
+            message.ReadByte();     // версия протокола
+            
+            Model.SelectPreset(new PresetLocation(message.ReadByte(), message.ReadByte()));
         }
     }
 }
