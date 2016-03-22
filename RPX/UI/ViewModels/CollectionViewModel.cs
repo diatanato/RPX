@@ -34,6 +34,8 @@ namespace RPX.UI.ViewModels
         private Boolean mIsModified;
         private IEnumerable<TDest> mItems;
 
+        private List<Func<TSource, IComparable>> mOrderBy;
+
         public Func<TSource, TDest> Selector { get; set; }
         public IEnumerable<TSource> SourceCollection { get; }
         public event NotifyCollectionChangedEventHandler CollectionChanged = (sender, e) => { };
@@ -41,6 +43,7 @@ namespace RPX.UI.ViewModels
         public CollectionViewModel(IEnumerable<TSource> collection, Func<TSource, TDest> selector)
         {
             mIsModified = true;
+
             Selector = selector;
             SourceCollection = collection;
 
@@ -50,12 +53,30 @@ namespace RPX.UI.ViewModels
             }
         }
 
+        public List<Func<TSource, IComparable>> OrderBy
+        {
+            get { return mOrderBy; }
+            set
+            {
+                mOrderBy = value;
+                NotifyCollectionChanged();
+            }
+        }
+
         public IEnumerator<TDest> GetEnumerator()
         {
             if (mIsModified || mItems == null)
             {
                 var source = SourceCollection ?? Enumerable.Empty<TSource>();
 
+                if (OrderBy?.Count > 0)
+                {
+                    source = source.OrderBy(OrderBy[0]);
+                    for (int index = 1; index < OrderBy.Count; ++index)
+                    {
+                        source = (source as IOrderedEnumerable<TSource>).ThenBy(OrderBy[index]);
+                    }
+                }
                 mItems = source.Select(Selector).ToArray();
                 mIsModified = false;
             }

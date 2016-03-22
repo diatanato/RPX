@@ -21,10 +21,10 @@
 ===========================================================================
 */
 
-using RPX.Presets;
-
 namespace RPX.UI.ViewModels
 {
+    using Presets;
+
     public class PresetLibraryItemViewModel
     {
         private readonly PresetLibraryItem mItem;
@@ -37,5 +37,7 @@ namespace RPX.UI.ViewModels
         public string Name { get { return mItem.Name; } }
         public Bank   Bank { get { return mItem.Location.Bank; } }
         public string Slot { get { return mItem.Location.Bank == Bank.Local ? null : (mItem.Location.Slot + 1).ToString("D2"); } }
+
+        public PresetLocation Location { get { return mItem.Location; } }
     }
 }

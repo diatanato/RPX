@@ -43,7 +43,7 @@ namespace RPX.Messages.Handlers
             message.ReadUshort();   // два байта чего-то
             message.ReadByte();     // версия протокола
             
-            Model.SelectPreset(new PresetLocation(message.ReadByte(), message.ReadByte()));
+            //Model.SelectPreset(new PresetLocation(message.ReadByte(), message.ReadByte()));
         }
     }
 }

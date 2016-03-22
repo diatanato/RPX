@@ -21,6 +21,8 @@
 ===========================================================================
 */
 
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace RPX.UI.ViewModels
@@ -37,12 +39,19 @@ namespace RPX.UI.ViewModels
     public class ControlPanelViewModel : BaseModel
     {
         public CollectionViewModel<PresetLibraryItem, PresetLibraryItemViewModel> Presets { get; }
-        public ObservableProperty<PresetLibraryItem> SelectedPreset { get; }
+        public ObservableProperty<PresetLibraryItemViewModel> SelectedPreset { get; }
 
         public ControlPanelViewModel()
         {
-            SelectedPreset = new ObservableProperty<PresetLibraryItem>();
+            SelectedPreset = new ObservableProperty<PresetLibraryItemViewModel>();
             Presets = new CollectionViewModel<PresetLibraryItem, PresetLibraryItemViewModel>(Model.Presets, item => new PresetLibraryItemViewModel(item));
+
+            Presets.OrderBy = new List<Func<PresetLibraryItem, IComparable>>
+            {
+                preset => preset.Location.Bank,
+                preset => preset.Location.Slot,
+                preset => preset.Name
+            };
 
             SelectedPreset.Changed += (sender, e) =>
             {
@@ -51,7 +60,7 @@ namespace RPX.UI.ViewModels
                     Model.SelectPreset(e.Value.Location);
                 }
             };
-            Model.ActivePreset.Changed += (sender, e) => SelectedPreset.Value = Presets.SourceCollection.FirstOrDefault(p => p.Location == e.Value.Location);
+            Model.ActivePreset.Changed += (sender, e) => SelectedPreset.Value = new PresetLibraryItemViewModel(Presets.SourceCollection.First(p => p.Location == e.Value.Location));
         }
     }
 }
