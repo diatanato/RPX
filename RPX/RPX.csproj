@@ -87,6 +87,7 @@
     <Compile Include="UI\ViewModels\BaseModel.cs" />
     <Compile Include="UI\ViewModels\CollectionViewModel.cs" />
     <Compile Include="UI\ViewModels\ControlPanelViewModel.cs" />
+    <Compile Include="UI\ViewModels\PresetLibraryItemViewModel.cs" />
     <Compile Include="UI\ViewModels\StatusBarViewModel.cs" />
     <Compile Include="UI\Views\ControlPanel.xaml.cs">
       <DependentUpon>ControlPanel.xaml</DependentUpon>

@@ -20,8 +20,8 @@
                             <ColumnDefinition Width="18"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock VerticalAlignment="Center" TextAlignment="Left" Grid.Column="0" Text="{Binding Location.Bank}"/>
-                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" Grid.Column="1" Text="{Binding Location.Slot}"/>
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Left" Grid.Column="0" Text="{Binding Bank}"/>
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" Grid.Column="1" Text="{Binding Slot}"/>
                         <TextBlock VerticalAlignment="Stretch" Grid.Column="2" HorizontalAlignment="Stretch" Text="{Binding Name}" />
                     </Grid>
                 </DataTemplate>

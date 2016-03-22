@@ -36,13 +36,13 @@ namespace RPX.UI.ViewModels
 
     public class ControlPanelViewModel : BaseModel
     {
-        public CollectionViewModel<PresetLibraryItem> Presets { get; private set; }
-        public ObservableProperty<PresetLibraryItem> SelectedPreset { get; private set; }
+        public CollectionViewModel<PresetLibraryItem, PresetLibraryItemViewModel> Presets { get; }
+        public ObservableProperty<PresetLibraryItem> SelectedPreset { get; }
 
         public ControlPanelViewModel()
         {
-            Presets = new CollectionViewModel<PresetLibraryItem>(Model.Presets);
             SelectedPreset = new ObservableProperty<PresetLibraryItem>();
+            Presets = new CollectionViewModel<PresetLibraryItem, PresetLibraryItemViewModel>(Model.Presets, item => new PresetLibraryItemViewModel(item));
 
             SelectedPreset.Changed += (sender, e) =>
             {
@@ -51,7 +51,7 @@ namespace RPX.UI.ViewModels
                     Model.SelectPreset(e.Value.Location);
                 }
             };
-            Model.ActivePreset.Changed += (sender, e) => SelectedPreset.Value = Presets.FirstOrDefault(p => p.Location == e.Value.Location);
+            Model.ActivePreset.Changed += (sender, e) => SelectedPreset.Value = Presets.SourceCollection.FirstOrDefault(p => p.Location == e.Value.Location);
         }
     }
 }

@@ -29,30 +29,34 @@ using System.Linq;
 
 namespace RPX.UI.ViewModels
 {
-    public class CollectionViewModel<T> : IEnumerable<T>, INotifyCollectionChanged
+    public class CollectionViewModel<TSource, TDest> : IEnumerable<TDest>, INotifyCollectionChanged
     {
         private Boolean mIsModified;
-        private IEnumerable<T> mItems;
+        private IEnumerable<TDest> mItems;
 
-        public IEnumerable<T> SourceCollection { get; private set; }
+        public Func<TSource, TDest> Selector { get; set; }
+        public IEnumerable<TSource> SourceCollection { get; }
         public event NotifyCollectionChangedEventHandler CollectionChanged = (sender, e) => { };
 
-        public CollectionViewModel(IEnumerable<T> collection)
+        public CollectionViewModel(IEnumerable<TSource> collection, Func<TSource, TDest> selector)
         {
             mIsModified = true;
+            Selector = selector;
             SourceCollection = collection;
 
             if (collection is INotifyCollectionChanged)
             {
-                (collection as INotifyCollectionChanged).CollectionChanged += (sender, e) => NotifyCollectionChanged();
+                ((INotifyCollectionChanged)collection).CollectionChanged += (sender, e) => NotifyCollectionChanged();
             }
         }
 
-        public IEnumerator<T> GetEnumerator()
+        public IEnumerator<TDest> GetEnumerator()
         {
             if (mIsModified || mItems == null)
             {
-                mItems = SourceCollection ?? Enumerable.Empty<T>();
+                var source = SourceCollection ?? Enumerable.Empty<TSource>();
+
+                mItems = source.Select(Selector).ToArray();
                 mIsModified = false;
             }
             return mItems.GetEnumerator();
