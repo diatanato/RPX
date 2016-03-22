@@ -22,6 +22,7 @@
 */
 
 using System;
+using System.IO;
 using System.Windows;
 
 namespace RPX.Interfaces
@@ -34,11 +35,16 @@ namespace RPX.Interfaces
     public interface IService : IDisposable
     {
         void SetNotificationRecipient(Window window);
+        void StartFileWatcher(string path, string extension);
 
         bool IsConnected { get; }
 
         event EventHandler ConnectedToDevice;
         event EventHandler DisconnectedFromDevice;
+
+        event FileSystemEventHandler FileCreated;
+        event RenamedEventHandler    FileRenamed;
+        event FileSystemEventHandler FileDeleted;
 
         void SyncPresetLibrary();
         void SetPreset(PresetLocation location);

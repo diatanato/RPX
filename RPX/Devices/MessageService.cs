@@ -23,6 +23,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -52,6 +53,10 @@ namespace RPX.Devices
 
         public event EventHandler ConnectedToDevice;
         public event EventHandler DisconnectedFromDevice;
+
+        public event FileSystemEventHandler FileCreated;
+        public event RenamedEventHandler    FileRenamed;
+        public event FileSystemEventHandler FileDeleted;
 
         public MessageService()
         {
@@ -118,6 +123,21 @@ namespace RPX.Devices
         public void Dispose()
         {
             WinAPI.UnregisterDeviceNotification(mDeviceNotifyHandle);
+        }
+
+        public void StartFileWatcher(string path, string extension)
+        {
+            var watcher = new FileSystemWatcher(path)
+            {
+                Filter = extension,
+                NotifyFilter = NotifyFilters.FileName
+            };
+
+            watcher.Created += (sender, e) => mUIThread.BeginInvoke(DispatcherPriority.Normal, (Action)(() => FileCreated?.Invoke(sender, e)));
+            watcher.Renamed += (sender, e) => mUIThread.BeginInvoke(DispatcherPriority.Normal, (Action)(() => FileRenamed?.Invoke(sender, e)));
+            watcher.Deleted += (sender, e) => mUIThread.BeginInvoke(DispatcherPriority.Normal, (Action)(() => FileDeleted?.Invoke(sender, e)));
+
+            watcher.EnableRaisingEvents = true;
         }
 
         #region исходящие

@@ -27,8 +27,9 @@ namespace RPX.Presets
 {
     public class PresetLocation
     {
-        public Bank Bank { get; set; }
-        public Byte Slot { get; set; }
+        public Bank   Bank { get; set; }
+        public Byte   Slot { get; set; }
+        public String Path { get; set; }
 
         public static PresetLocation EditBuffer
         {

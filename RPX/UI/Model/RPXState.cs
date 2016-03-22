@@ -23,12 +23,16 @@
 
 using System;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
 
 namespace RPX.UI.Model
 {
     using Interfaces;
     using Presets;
     using Utils;
+
+    // TODO: расширение пресета взять от текущего устройства
 
     public class RPXState : IState
     {
@@ -46,6 +50,12 @@ namespace RPX.UI.Model
             
             mService.ConnectedToDevice += ConnectedToDevice;
             mService.DisconnectedFromDevice += DisconnectedFromDevice;
+
+            mService.FileCreated += OnCreatedPreset;
+            mService.FileRenamed += OnRenamedPreset;
+            mService.FileDeleted += OnDeletedPreset;
+            
+            mService.StartFileWatcher(PresetsDirectory, "*.rp1000p"); 
 
             SyncPresetLibrary();
         }
@@ -85,7 +95,72 @@ namespace RPX.UI.Model
         {
             Presets.Clear();
 
+            foreach (var file in Directory.EnumerateFiles(PresetsDirectory, "*.rp1000p"))
+            {
+                Presets.Add(new PresetLibraryItem
+                {
+                    Name = Path.GetFileNameWithoutExtension(file),
+                    Location = new PresetLocation(Bank.Local, 0) { Path = file }
+                });
+            }
             mService.SyncPresetLibrary();
         }
+
+        #region отслеживание
+
+        private void OnCreatedPreset(object source, FileSystemEventArgs e)
+        {
+            Presets.Add(new PresetLibraryItem
+            {
+                Name = Path.GetFileNameWithoutExtension(e.Name),
+                Location = new PresetLocation(Bank.Local, 0) { Path = e.FullPath }
+            });
+        }
+
+        private void OnRenamedPreset(object source, RenamedEventArgs e)
+        {
+            Presets.Remove(Presets.FirstOrDefault(preset => preset.Location.Path == e.OldFullPath));
+
+            if (Path.GetExtension(e.Name) == ".rp1000p")
+            {
+                Presets.Add(new PresetLibraryItem
+                {
+                    Name = Path.GetFileNameWithoutExtension(e.Name),
+                    Location = new PresetLocation(Bank.Local, 0) { Path = e.FullPath }
+                });
+            }
+        }
+
+        private void OnDeletedPreset(object source, FileSystemEventArgs e)
+        {
+            Presets.Remove(Presets.FirstOrDefault(preset => preset.Location.Path == e.FullPath));
+        }
+        #endregion
+        #region папки
+
+        private string mMainDirectory;
+        private string mPresetDirectory;
+
+        public string MainDirectory
+        {
+            get { return mMainDirectory ?? (mMainDirectory = GetDirectory(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "RPX")); }
+        }
+
+        public string PresetsDirectory
+        {
+            get { return mPresetDirectory ?? (mPresetDirectory = GetDirectory(MainDirectory, "Presets")); }
+        }
+
+        private static string GetDirectory(params string[] segments)
+        {
+            var path = String.Empty;
+
+            foreach (var segment in segments)
+            {
+                Directory.CreateDirectory(path = Path.Combine(path, segment));
+            }
+            return path;
+        }
+        #endregion
     }
 }
