@@ -29,7 +29,7 @@ using System.Linq;
 
 namespace RPX.UI.ViewModels
 {
-    public class CollectionViewModel<TSource, TDest> : IEnumerable<TDest>, INotifyCollectionChanged
+    public class CollectionModel<TSource, TDest> : IEnumerable<TDest>, INotifyCollectionChanged
     {
         private Boolean mIsModified;
         private IEnumerable<TDest> mItems;
@@ -40,7 +40,7 @@ namespace RPX.UI.ViewModels
         public IEnumerable<TSource> SourceCollection { get; }
         public event NotifyCollectionChangedEventHandler CollectionChanged = (sender, e) => { };
 
-        public CollectionViewModel(IEnumerable<TSource> collection, Func<TSource, TDest> selector)
+        public CollectionModel(IEnumerable<TSource> collection, Func<TSource, TDest> selector)
         {
             mIsModified = true;
 

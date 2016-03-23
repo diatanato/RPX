@@ -36,15 +36,15 @@ namespace RPX.UI.ViewModels
     *                                                                       *
     ************************************************************************/
 
-    public class ControlPanelViewModel : BaseModel
+    public class ControlPanelModel : BaseModel
     {
-        public CollectionViewModel<PresetLibraryItem, PresetLibraryItemViewModel> Presets { get; }
-        public ObservableProperty<PresetLibraryItemViewModel> SelectedPreset { get; }
+        public CollectionModel<PresetLibraryItem, PresetLibraryItemModel> Presets { get; }
+        public ObservableProperty<PresetLibraryItemModel> SelectedPreset { get; }
 
-        public ControlPanelViewModel()
+        public ControlPanelModel()
         {
-            SelectedPreset = new ObservableProperty<PresetLibraryItemViewModel>();
-            Presets = new CollectionViewModel<PresetLibraryItem, PresetLibraryItemViewModel>(Model.Presets, item => new PresetLibraryItemViewModel(item));
+            SelectedPreset = new ObservableProperty<PresetLibraryItemModel>();
+            Presets = new CollectionModel<PresetLibraryItem, PresetLibraryItemModel>(Model.Presets, item => new PresetLibraryItemModel(item));
 
             Presets.OrderBy = new List<Func<PresetLibraryItem, IComparable>>
             {
@@ -60,7 +60,7 @@ namespace RPX.UI.ViewModels
                     Model.SelectPreset(e.Value.Location);
                 }
             };
-            Model.ActivePreset.Changed += (sender, e) => SelectedPreset.Value = new PresetLibraryItemViewModel(Presets.SourceCollection.First(p => p.Location == e.Value.Location));
+            Model.ActivePreset.Changed += (sender, e) => SelectedPreset.Value = new PresetLibraryItemModel(Presets.SourceCollection.First(p => p.Location == e.Value.Location));
         }
     }
 }

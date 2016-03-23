@@ -85,10 +85,11 @@
     <Compile Include="UI\Model\RPXState.cs" />
     <Compile Include="UI\Utils\ObservableProperty.cs" />
     <Compile Include="UI\ViewModels\BaseModel.cs" />
-    <Compile Include="UI\ViewModels\CollectionViewModel.cs" />
-    <Compile Include="UI\ViewModels\ControlPanelViewModel.cs" />
-    <Compile Include="UI\ViewModels\PresetLibraryItemViewModel.cs" />
-    <Compile Include="UI\ViewModels\StatusBarViewModel.cs" />
+    <Compile Include="UI\ViewModels\CollectionModel.cs" />
+    <Compile Include="UI\ViewModels\ControlPanelModel.cs" />
+    <Compile Include="UI\ViewModels\EditorModel.cs" />
+    <Compile Include="UI\ViewModels\PresetLibraryItemModel.cs" />
+    <Compile Include="UI\ViewModels\StatusBarModel.cs" />
     <Compile Include="UI\Views\ControlPanel.xaml.cs">
       <DependentUpon>ControlPanel.xaml</DependentUpon>
     </Compile>

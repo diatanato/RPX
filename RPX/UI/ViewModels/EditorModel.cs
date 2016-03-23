@@ -23,23 +23,7 @@
 
 namespace RPX.UI.ViewModels
 {
-    using Utils;
-
-    public class StatusBarViewModel : BaseModel
+    public class EditorModel : BaseModel
     {
-        public ObservableProperty<bool> ConnectionStatus { get; }
-
-        public StatusBarViewModel()
-        {
-            ConnectionStatus = new ObservableProperty<bool>();
-
-            SetConnectionStatus();
-            Model.IsConnectedToDevice.Changed += (sender, e) => SetConnectionStatus();
-        }
-
-        private void SetConnectionStatus()
-        {
-            ConnectionStatus.Value = Model.IsConnectedToDevice.Value;
-        }
     }
 }

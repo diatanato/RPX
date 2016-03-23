@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignWidth="500" Height="24">
     <UserControl.DataContext>
-        <vm:StatusBarViewModel/>
+        <vm:StatusBarModel/>
     </UserControl.DataContext>
     <Grid>
         <CheckBox Content="Connection Status" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" IsChecked="{Binding ConnectionStatus.Value, Mode=OneWay}"/>

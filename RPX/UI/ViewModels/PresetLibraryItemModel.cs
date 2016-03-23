@@ -25,11 +25,11 @@ namespace RPX.UI.ViewModels
 {
     using Presets;
 
-    public class PresetLibraryItemViewModel
+    public class PresetLibraryItemModel
     {
         private readonly PresetLibraryItem mItem;
 
-        public PresetLibraryItemViewModel(PresetLibraryItem item)
+        public PresetLibraryItemModel(PresetLibraryItem item)
         {
             mItem = item;
         }

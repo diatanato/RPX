@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignWidth="700" Height="100">
     <UserControl.DataContext>
-        <vm:ControlPanelViewModel/>
+        <vm:ControlPanelModel/>
     </UserControl.DataContext>
     <Grid>
         <TextBlock FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"  Text="Control Panel"/>
