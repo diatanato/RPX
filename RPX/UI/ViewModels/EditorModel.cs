@@ -21,9 +21,101 @@
 ===========================================================================
 */
 
+using System.Windows;
+
 namespace RPX.UI.ViewModels
 {
     public class EditorModel : BaseModel
     {
+        public Visibility Amplifier
+        {
+            get
+            {
+                return Model.ActivePreset.Value.Amplifier.Enable 
+                    ? Visibility.Visible 
+                    : Visibility.Collapsed;
+            }
+        }
+        public Visibility Cabinet
+        {
+            get
+            {
+                return Model.ActivePreset.Value.Cabinet.Enable
+                    ? Visibility.Visible
+                    : Visibility.Collapsed;
+            }
+        }
+        public Visibility Distortion
+        {
+            get
+            {
+                return Model.ActivePreset.Value.Distortion.Enable
+                    ? Visibility.Visible
+                    : Visibility.Collapsed;
+            }
+        }
+        public Visibility Modulation
+        {
+            get
+            {
+                return Model.ActivePreset.Value.Modulation.Enable
+                    ? Visibility.Visible
+                    : Visibility.Collapsed;
+            }
+        }
+        public Visibility Delay
+        {
+            get
+            {
+                return Model.ActivePreset.Value.Delay.Enable
+                    ? Visibility.Visible
+                    : Visibility.Collapsed;
+            }
+        }
+        public Visibility Reverb
+        {
+            get
+            {
+                return Model.ActivePreset.Value.Reverb.Enable
+                    ? Visibility.Visible
+                    : Visibility.Collapsed;
+            }
+        }
+        public Visibility Equalizer
+        {
+            get
+            {
+                return Model.ActivePreset.Value.Equalizer.Enable
+                    ? Visibility.Visible
+                    : Visibility.Collapsed;
+            }
+        }
+        public Visibility Compressor
+        {
+            get
+            {
+                return Model.ActivePreset.Value.Compressor.Enable
+                    ? Visibility.Visible
+                    : Visibility.Collapsed;
+            }
+        }
+        public Visibility NoiseGate
+        {
+            get
+            {
+                return Model.ActivePreset.Value.NoiseGate.Enable
+                    ? Visibility.Visible
+                    : Visibility.Collapsed;
+            }
+        }
+        public Visibility Wah
+        {
+            get
+            {
+                return Model.ActivePreset.Value.Wah.Enable
+                    ? Visibility.Visible
+                    : Visibility.Collapsed;
+            }
+        }
     }
 }

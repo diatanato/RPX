@@ -26,5 +26,30 @@ namespace RPX.Presets
     public class Preset
     {
         public PresetLocation Location { get; set; }
+
+        public Module Amplifier  { get; private set; }
+        public Module Cabinet    { get; private set; }
+        public Module Distortion { get; private set; }
+        public Module Modulation { get; private set; }
+        public Module Delay      { get; private set; }
+        public Module Reverb     { get; private set; }
+        public Module Equalizer  { get; private set; }
+        public Module Compressor { get; private set; }
+        public Module NoiseGate  { get; private set; }
+        public Module Wah        { get; private set; }
+
+        public Preset()
+        {
+            Amplifier  = new Module();
+            Cabinet    = new Module();
+            Distortion = new Module();
+            Modulation = new Module();
+            Delay      = new Module();
+            Reverb     = new Module();
+            Equalizer  = new Module();
+            Compressor = new Module();
+            NoiseGate  = new Module();
+            Wah        = new Module();
+        }
     }
 }

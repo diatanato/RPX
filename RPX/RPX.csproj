@@ -66,6 +66,7 @@
     <Compile Include="Interfaces\IDevice.cs" />
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Interfaces\IState.cs" />
+    <Compile Include="Messages\Handlers\RxParamValue.cs" />
     <Compile Include="Messages\SetPreset.cs" />
     <Compile Include="Messages\GetGlobalParams.cs" />
     <Compile Include="Messages\GetConfig.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Messages\GetIdentity.cs" />
     <Compile Include="Messages\Handlers\RxConfigHandler.cs" />
     <Compile Include="Presets\Bank.cs" />
+    <Compile Include="Presets\Module.cs" />
     <Compile Include="Presets\Preset.cs" />
     <Compile Include="Presets\PresetLocation.cs" />
     <Compile Include="Presets\PresetLibraryItem.cs" />
