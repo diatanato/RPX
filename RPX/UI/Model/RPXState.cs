@@ -25,11 +25,14 @@ using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Windows;
+using System.Xml.Serialization;
 
 namespace RPX.UI.Model
 {
     using Interfaces;
     using Presets;
+    using Presets.Data;
     using Utils;
 
     // TODO: расширение пресета взять от текущего устройства
@@ -82,12 +85,47 @@ namespace RPX.UI.Model
 
                 switch (location.Bank)
                 {
+                    case Bank.Local:
+                        LoadPreset(location.Path);
+                        break;
                     case Bank.User:
                     case Bank.Factory:
                         mService.SetPreset(location);
                         break;
                 }
                 ActivePreset.NotifyPropertyChanged();
+            }
+        }
+
+        public void LoadPreset(String path)
+        {
+            try
+            {
+                Type type;
+
+                switch (Path.GetExtension(path))
+                {
+                    case ".rp500p":  type = typeof(RP500Preset);  break;
+                    case ".rp1000p": type = typeof(RP1000Preset); break;
+
+                    default: return;
+                }
+                using (Stream file = File.Open(path, FileMode.Open))
+                {
+                    var preset = new XmlSerializer(type).Deserialize(file) as RPXPreset;
+
+                    if (preset != null)
+                    {
+                        foreach (var parameter in preset.Params.Param)
+                        {
+                            ActivePreset.Value.SetParameter((ModuleType)parameter.Position, parameter.ID, parameter.Value);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("LoadPreset::Error : {0}", ex.Message);
             }
         }
 

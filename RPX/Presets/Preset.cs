@@ -21,22 +21,24 @@
 ===========================================================================
 */
 
+using System;
+
 namespace RPX.Presets
 {
     public class Preset
     {
         public PresetLocation Location { get; set; }
 
-        public Module Amplifier  { get; private set; }
-        public Module Cabinet    { get; private set; }
-        public Module Distortion { get; private set; }
-        public Module Modulation { get; private set; }
-        public Module Delay      { get; private set; }
-        public Module Reverb     { get; private set; }
-        public Module Equalizer  { get; private set; }
-        public Module Compressor { get; private set; }
-        public Module NoiseGate  { get; private set; }
-        public Module Wah        { get; private set; }
+        public Module Amplifier  { get; }
+        public Module Cabinet    { get; }
+        public Module Distortion { get; }
+        public Module Modulation { get; }
+        public Module Delay      { get; }
+        public Module Reverb     { get; }
+        public Module Equalizer  { get; }
+        public Module Compressor { get; }
+        public Module NoiseGate  { get; }
+        public Module Wah        { get; }
 
         public Preset()
         {
@@ -50,6 +52,33 @@ namespace RPX.Presets
             Compressor = new Module();
             NoiseGate  = new Module();
             Wah        = new Module();
+        }
+
+        public void SetParameter(ModuleType type, UInt16 paramid, UInt32 value)
+        {
+            var module = GetModuleByType(type);
+
+            // TODO: разновидность модуля так же обновляется через этот метод. у модулей одного типа может быть разный набор параметров
+
+            module.SetParameter(paramid, value);
+        }
+
+        public Module GetModuleByType(ModuleType type)
+        {
+            switch (type)
+            {
+                case ModuleType.AMPLIFIER:  return Amplifier;
+                case ModuleType.CABINET:    return Cabinet;
+                case ModuleType.DISTORTION: return Distortion;
+                case ModuleType.MODULATION: return Modulation;
+                case ModuleType.DELAY:      return Delay;
+                case ModuleType.REVERB:     return Reverb;
+                case ModuleType.EQUALIZAR:  return Equalizer;
+                case ModuleType.COMPRESSOR: return Compressor;
+                case ModuleType.NOISEGATE:  return NoiseGate;
+                case ModuleType.WAH:        return Wah;
+            }
+            return new Module();
         }
     }
 }

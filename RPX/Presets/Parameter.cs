@@ -22,36 +22,24 @@
 */
 
 using System;
-using System.Linq;
 
 namespace RPX.Presets
 {
-    public class Module
+    using UI.Utils;
+
+    public class Parameter : ObservableProperty<UInt32>
     {
-        public Boolean     Enable     { get { return true; } }
-        public Parameter[] Parameters { get; }
+        public UInt16 ID  { get; set; }
+        public UInt32 Min { get; set; }
+        public UInt32 Max { get; set; }
 
-        public Module()
+        public new UInt32 Value
         {
-            Parameters = new Parameter[0];
-        }
-
-        /// <summary>
-        /// Обновление значения параметра модуля
-        /// </summary>
-        /// <param name="id">идентификатор параметра</param>
-        /// <param name="value">новое значение параметра</param>
-        /// <returns>успех или провал операции</returns>
-        public bool SetParameter(UInt16 id, UInt32 value)
-        {
-            var parameter = Parameters.FirstOrDefault(p => p.ID == id);
-            
-            if (parameter != null && parameter.Value != value)
+            get { return base.Value; }
+            set
             {
-                var v = parameter.Value;
-                return (parameter.Value = value) != v;
+                base.Value = Math.Min(Math.Max(value, Min), Max);
             }
-            return false;
         }
     }
 }

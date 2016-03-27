@@ -78,6 +78,13 @@
     <Compile Include="Messages\GetIdentity.cs" />
     <Compile Include="Messages\Handlers\RxConfigHandler.cs" />
     <Compile Include="Presets\Bank.cs" />
+    <Compile Include="Presets\Data\PR1000Preset.cs" />
+    <Compile Include="Presets\Data\RP500Preset.cs" />
+    <Compile Include="Presets\Data\RPXParameter.cs" />
+    <Compile Include="Presets\Data\RPXParameterData.cs" />
+    <Compile Include="Presets\Data\RPXPreset.cs" />
+    <Compile Include="Presets\ModuleType.cs" />
+    <Compile Include="Presets\Parameter.cs" />
     <Compile Include="Presets\Module.cs" />
     <Compile Include="Presets\Preset.cs" />
     <Compile Include="Presets\PresetLocation.cs" />

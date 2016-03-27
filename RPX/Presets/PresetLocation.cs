@@ -69,12 +69,12 @@ namespace RPX.Presets
             if (ReferenceEquals(location, null))
                 return false;
 
-            return location.Bank == Bank && location.Slot == Slot;
+            return location.Bank == Bank && location.Slot == Slot && location.Path == Path;
         }
 
         public override int GetHashCode()
         {
-            return (int)Bank << 16 | Slot;
+            return (int)Bank << 8 | Slot;
         }
         #endregion
     }
