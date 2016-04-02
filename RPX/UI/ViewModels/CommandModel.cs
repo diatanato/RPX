@@ -22,42 +22,32 @@
 */
 
 using System;
-using System.ComponentModel;
-using System.Windows;
+using System.Windows.Input;
 
 namespace RPX.UI.ViewModels
 {
-    using Interfaces;
-    using Model;
-
     /************************************************************************
     *                                                                       *
-    *  Базовый класс для моделей                                            *
+    *  Базовый класс для команд                                             *
     *                                                                       *
     ************************************************************************/
 
-    public abstract class BaseModel : INotifyPropertyChanged 
+    public abstract class CommandModel<T> : ICommand where T : BaseModel
     {
-        protected static IState Model { get; private set; }
+        public virtual event EventHandler CanExecuteChanged = (sender, e) => { };
 
-        static BaseModel()
+        public T Model { get; private set; }
+
+        protected CommandModel(T vm)
         {
-            Model = IsInDessignMode ? new DevState() : ServiceStorage.Resolve<IState>();
+            Model = vm;
         }
 
-        static bool IsInDessignMode
+        public virtual bool CanExecute(object parameter)
         {
-            get { return (bool)DependencyPropertyDescriptor.FromProperty(DesignerProperties.IsInDesignModeProperty, typeof(FrameworkElement)).Metadata.DefaultValue; }
+            return true;
         }
 
-        #region INotifyPropertyChanged
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void NotifyPropertyChanged(String propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
+        public abstract void Execute(object parameter);
     }
 }

@@ -44,12 +44,7 @@ namespace RPX.UI.Views
         }
 
         private DropShadowEffect shadow = new DropShadowEffect { ShadowDepth = 0, BlurRadius = 15 };
-
-        private void Rectangle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            Console.WriteLine("Module: {0}", ((FrameworkElement)sender).Name);
-        }
-
+        
         private void Rectangle_MouseEnter(object sender, MouseEventArgs e)
         {
             ((Rectangle)sender).Effect = shadow;

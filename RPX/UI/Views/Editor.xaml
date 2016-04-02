@@ -14,22 +14,100 @@
             <RowDefinition/>
             <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
-        <TextBlock FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"  Text="Editor"/>
+        <ContentControl Content="{Binding Content.Value, Mode=OneWay}"/>
         <Path Data="M10,0 L280,0" Fill="#FF000000" Grid.Row="1" Margin="20,0" Stretch="Fill" Stroke="Black" VerticalAlignment="Center" StrokeThickness="2"/>
         <StackPanel x:Name="Pedalboard"  Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" Orientation="Horizontal">
-            <Rectangle x:Name="wah" Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="25" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave" Visibility="{Binding Wah, Mode=OneWay}"/>
-            <Rectangle x:Name="compressor" Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="40" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave" Visibility="{Binding Compressor, Mode=OneWay}"/>
-            <Rectangle x:Name="fx_pre" Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="40" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave" Visibility="{Binding Modulation, Mode=OneWay}"/>
-            <Rectangle x:Name="distortion" Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="40" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave" Visibility="{Binding Distortion, Mode=OneWay}"/>
-            <Rectangle x:Name="amp" Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="80" Height="40" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave" Visibility="{Binding Amplifier, Mode=OneWay}"/>
-            <Rectangle x:Name="cabinet" Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="60" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave" Visibility="{Binding Cabinet, Mode=OneWay}"/>
-            <Rectangle x:Name="noise_gate" Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="40" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave" Visibility="{Binding NoiseGate, Mode=OneWay}"/>
-            <Rectangle x:Name="eq" Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="40" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave" Visibility="{Binding Equalizer, Mode=OneWay}"/>
-            <Rectangle x:Name="volume_pre" Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="25" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
-            <Rectangle x:Name="fx_post" Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="40" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave" Visibility="{Binding Modulation, Mode=OneWay}"/>
-            <Rectangle x:Name="delay" Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="40" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave" Visibility="{Binding Delay, Mode=OneWay}"/>
-            <Rectangle x:Name="reverb" Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="40" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave" Visibility="{Binding Reverb, Mode=OneWay}"/>
-            <Rectangle x:Name="volume_post" Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="25" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
+            <Button x:Name="wah" Command="{Binding ShowEditorCommand, Mode=OneWay}" Visibility="{Binding Wah, Mode=OneWay}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Rectangle Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="25" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="compressor" Command="{Binding ShowEditorCommand, Mode=OneWay}" Visibility="{Binding Compressor, Mode=OneWay}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Rectangle Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="40" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="modulation_pre" Command="{Binding ShowEditorCommand, Mode=OneWay}" Visibility="{Binding Modulation, Mode=OneWay}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Rectangle Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="40" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="distortion" Command="{Binding ShowEditorCommand, Mode=OneWay}" Visibility="{Binding Distortion, Mode=OneWay}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Rectangle Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="40" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="amplifier" Command="{Binding ShowAmplifierEditorCommand, Mode=OneWay}" Visibility="{Binding Amplifier, Mode=OneWay}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Rectangle Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="80" Height="40" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="cabinet" Command="{Binding ShowEditorCommand, Mode=OneWay}" Visibility="{Binding Cabinet, Mode=OneWay}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Rectangle Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="60" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="noise_gate" Command="{Binding ShowEditorCommand, Mode=OneWay}" Visibility="{Binding NoiseGate, Mode=OneWay}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Rectangle Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="40" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="equalizer" Command="{Binding ShowEditorCommand, Mode=OneWay}" Visibility="{Binding Equalizer, Mode=OneWay}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Rectangle Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="40" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="volume_pre" Command="{Binding ShowEditorCommand, Mode=OneWay}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Rectangle Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="25" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="modulation_post" Command="{Binding ShowEditorCommand, Mode=OneWay}" Visibility="{Binding Modulation, Mode=OneWay}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Rectangle Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="40" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="delay" Command="{Binding ShowEditorCommand, Mode=OneWay}" Visibility="{Binding Delay, Mode=OneWay}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Rectangle Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="40" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="reverb" Command="{Binding ShowEditorCommand, Mode=OneWay}" Visibility="{Binding Reverb, Mode=OneWay}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Rectangle Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="40" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="volume_post" Command="{Binding ShowEditorCommand, Mode=OneWay}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Rectangle Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="10,0" Stroke="#FF000000" Width="25" Height="60" VerticalAlignment="Center" StrokeThickness="2" RadiusX="5" RadiusY="5" MouseEnter="Rectangle_MouseEnter" MouseLeave="Rectangle_MouseLeave"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>

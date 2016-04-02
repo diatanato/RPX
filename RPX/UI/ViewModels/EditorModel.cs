@@ -22,11 +22,52 @@
 */
 
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace RPX.UI.ViewModels
 {
+    using Utils;
+    using Views;
+
     public class EditorModel : BaseModel
     {
+        public ObservableProperty<UserControl> Content { get; }
+
+        public ICommand ShowEditorCommand { get; }
+        public ICommand ShowAmplifierEditorCommand  { get; }
+
+        public EditorModel()
+        {
+            ShowEditorCommand          = new ShowEditor(this);
+            ShowAmplifierEditorCommand = new ShowAmplifierEditor(this);
+
+            Content = new ObservableProperty<UserControl>(new AmplifierEditor());
+        }
+
+        #region команды
+
+        private class ShowAmplifierEditor : CommandModel<EditorModel>
+        {
+            public ShowAmplifierEditor(EditorModel vm) : base(vm) { }
+
+            public override void Execute(object parameter)
+            {
+                Model.Content.Value = new AmplifierEditor();
+            }
+        }
+
+        private class ShowEditor : CommandModel<EditorModel>
+        {
+            public ShowEditor(EditorModel vm) : base(vm) { }
+
+            public override void Execute(object parameter)
+            {
+                Model.Content.Value = null;
+            }
+        }
+        #endregion
+
         public Visibility Amplifier
         {
             get

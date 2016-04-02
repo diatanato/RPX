@@ -21,43 +21,19 @@
 ===========================================================================
 */
 
-using System;
-using System.ComponentModel;
-using System.Windows;
-
-namespace RPX.UI.ViewModels
+namespace RPX.UI.Views
 {
-    using Interfaces;
-    using Model;
-
     /************************************************************************
     *                                                                       *
-    *  Базовый класс для моделей                                            *
+    *                                                                       *
     *                                                                       *
     ************************************************************************/
 
-    public abstract class BaseModel : INotifyPropertyChanged 
+    public partial class AmplifierEditor
     {
-        protected static IState Model { get; private set; }
-
-        static BaseModel()
+        public AmplifierEditor()
         {
-            Model = IsInDessignMode ? new DevState() : ServiceStorage.Resolve<IState>();
+            InitializeComponent();
         }
-
-        static bool IsInDessignMode
-        {
-            get { return (bool)DependencyPropertyDescriptor.FromProperty(DesignerProperties.IsInDesignModeProperty, typeof(FrameworkElement)).Metadata.DefaultValue; }
-        }
-
-        #region INotifyPropertyChanged
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void NotifyPropertyChanged(String propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
     }
 }

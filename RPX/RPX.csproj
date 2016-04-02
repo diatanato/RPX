@@ -94,11 +94,15 @@
     <Compile Include="UI\Model\RPXState.cs" />
     <Compile Include="UI\Utils\ObservableProperty.cs" />
     <Compile Include="UI\ViewModels\BaseModel.cs" />
+    <Compile Include="UI\ViewModels\CommandModel.cs" />
     <Compile Include="UI\ViewModels\CollectionModel.cs" />
     <Compile Include="UI\ViewModels\ControlPanelModel.cs" />
     <Compile Include="UI\ViewModels\EditorModel.cs" />
     <Compile Include="UI\ViewModels\PresetLibraryItemModel.cs" />
     <Compile Include="UI\ViewModels\StatusBarModel.cs" />
+    <Compile Include="UI\Views\AmplifierEditor.xaml.cs">
+      <DependentUpon>AmplifierEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Views\ControlPanel.xaml.cs">
       <DependentUpon>ControlPanel.xaml</DependentUpon>
     </Compile>
@@ -122,6 +126,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UI\Views\AmplifierEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Views\ControlPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

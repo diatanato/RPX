@@ -27,6 +27,8 @@ using Hmg.Comm;
 
 namespace RPX.Messages.Handlers
 {
+    using Presets;
+
     /************************************************************************
     *                                                                       *
     *                                                                       *
@@ -39,11 +41,11 @@ namespace RPX.Messages.Handlers
 
         public override void HandleMessage(ProcedureInMessage message)
         {
-            var param  = (UInt16)message.ReadUshort();
-            var module = (Byte)  message.ReadByte();
-            var value  = (UInt32)message.ReadMag7Uint();
+            var param  = (UInt16)    message.ReadUshort();
+            var module = (ModuleType)message.ReadByte();
+            var value  = (UInt32)    message.ReadMag7Uint();
 
-            Console.WriteLine($"module: {module}, param: {param}, value: {value}");
+            Model.ActivePreset.Value.SetParameter(module, param, value);
         }
     }
 }
