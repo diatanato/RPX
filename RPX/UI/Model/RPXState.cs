@@ -25,11 +25,11 @@ using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Windows;
 using System.Xml.Serialization;
 
 namespace RPX.UI.Model
 {
+    using Devices.Data;
     using Interfaces;
     using Presets;
     using Presets.Data;
@@ -48,7 +48,7 @@ namespace RPX.UI.Model
         public RPXState()
         {
             Presets = new ObservableCollection<PresetLibraryItem>();
-            ActivePreset = new ObservableProperty<Preset>(new Preset());
+            ActivePreset = new ObservableProperty<Preset>(new Preset(ServiceStorage.Resolve<DBDevicesData>().Devices.FirstOrDefault(/*идентификатор процессора*/)));
             IsConnectedToDevice = new ObservableProperty<bool>(mService.IsConnected);
             
             mService.ConnectedToDevice += ConnectedToDevice;
@@ -66,6 +66,10 @@ namespace RPX.UI.Model
         private void ConnectedToDevice(object sender, EventArgs e)
         {
             IsConnectedToDevice.Value = true;
+
+            //TODO: проверяем тип процессона в пресете. меняем на подключенный, если отличается
+
+            ActivePreset.Value = new Preset(ServiceStorage.Resolve<DBDevicesData>().Devices.FirstOrDefault(/*идентификатор процессора*/));
 
             SyncPresetLibrary();
         }
@@ -120,6 +124,7 @@ namespace RPX.UI.Model
                         {
                             ActivePreset.Value.SetParameter((ModuleType)parameter.Position, parameter.ID, parameter.Value);
                         }
+                        //mService.SetPreset(preset);
                     }
                 }
             }
@@ -142,6 +147,19 @@ namespace RPX.UI.Model
                 });
             }
             mService.SyncPresetLibrary();
+        }
+
+        /// <summary>
+        /// Устанавливаем текущее значение указанного параметра
+        /// </summary>
+        /// <param name="module"></param>
+        /// <param name="paramid"></param>
+        /// <param name="value"></param>
+        public void SetParameterValue(ModuleType module, UInt16 paramid, UInt32 value)
+        {
+            ActivePreset.Value.SetParameter(module, paramid, value);
+
+            mService.SetParameterValue(module, paramid, value);
         }
 
         #region отслеживание

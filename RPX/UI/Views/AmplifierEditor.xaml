@@ -3,10 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:RPX.UI.Views"
+             xmlns:v="clr-namespace:RPX.UI.Views"
+             xmlns:vm="clr-namespace:RPX.UI.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="750">
+    <UserControl.DataContext>
+        <vm:AmplifierEditorModel/>
+    </UserControl.DataContext>
     <Grid>
+        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="10,10,0,0" ItemsSource="{Binding Modules}" SelectedItem="{Binding SelectedModule.Value}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid d:DesignWidth="200">
+                        <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Stretch"/>
+                    </Grid>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <TextBlock HorizontalAlignment="Center" Text="Amplifier Editor" VerticalAlignment="Center" FontSize="16"/>
     </Grid>
 </UserControl>

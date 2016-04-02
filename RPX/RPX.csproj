@@ -62,11 +62,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Devices\Data\DBDevice.cs" />
+    <Compile Include="Devices\Data\DBDevicesData.cs" />
+    <Compile Include="Devices\Data\DBModule.cs" />
+    <Compile Include="Devices\Data\DBModulesData.cs" />
+    <Compile Include="Devices\Data\DBName.cs" />
+    <Compile Include="Devices\Data\DBID.cs" />
+    <Compile Include="Devices\Data\DBParameter.cs" />
     <Compile Include="Devices\MessageService.cs" />
     <Compile Include="Interfaces\IDevice.cs" />
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Interfaces\IState.cs" />
     <Compile Include="Messages\Handlers\RxParamValue.cs" />
+    <Compile Include="Messages\SetParameterValue.cs" />
     <Compile Include="Messages\SetPreset.cs" />
     <Compile Include="Messages\GetGlobalParams.cs" />
     <Compile Include="Messages\GetConfig.cs" />
@@ -92,7 +100,7 @@
     <Compile Include="ServiceStorage.cs" />
     <Compile Include="UI\Model\DevState.cs" />
     <Compile Include="UI\Model\RPXState.cs" />
-    <Compile Include="UI\Utils\ObservableProperty.cs" />
+    <Compile Include="UI\ViewModels\AmplifierEditorModel.cs" />
     <Compile Include="UI\ViewModels\BaseModel.cs" />
     <Compile Include="UI\ViewModels\CommandModel.cs" />
     <Compile Include="UI\ViewModels\CollectionModel.cs" />
@@ -112,6 +120,7 @@
     <Compile Include="UI\Views\StatusBar.xaml.cs">
       <DependentUpon>StatusBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\ObservableProperty.cs" />
     <Compile Include="Utils\WinAPI.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -173,6 +182,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UI\Styles\" />
+    <Folder Include="UI\Utils\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Devices\Data\database.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

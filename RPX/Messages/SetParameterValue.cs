@@ -22,32 +22,22 @@
 */
 
 using System;
-using System.IO;
-using System.Windows;
+using Hmg.Comm;
 
-namespace RPX.Interfaces
+namespace RPX.Messages
 {
     using Presets;
 
-    /// <summary>
-    /// Логика взаимодействия приложения и процессора
-    /// </summary>
-    public interface IService : IDisposable
+    public class SetParameterValue : ProcedureOutMessage
     {
-        void SetNotificationRecipient(Window window);
-        void StartFileWatcher(string path, string extension);
-
-        bool IsConnected { get; }
-
-        event EventHandler ConnectedToDevice;
-        event EventHandler DisconnectedFromDevice;
-
-        event FileSystemEventHandler FileCreated;
-        event RenamedEventHandler    FileRenamed;
-        event FileSystemEventHandler FileDeleted;
-
-        void SyncPresetLibrary();
-        void SetPreset(PresetLocation location);
-        void SetParameterValue(ModuleType module, UInt16 id, UInt32 value);
+        /// <summary>
+        /// Устанавливаем значение параметра
+        /// </summary>
+        public SetParameterValue(ModuleType module, UInt16 id, UInt32 value) : base(CommMsgID.RxParamValue)
+        {
+            WriteUshort(id);
+            WriteByte((byte)module);
+            WriteMag7Uint(value);
+        }
     }
 }

@@ -25,7 +25,7 @@ using System;
 
 namespace RPX.Presets
 {
-    using UI.Utils;
+    using Utils;
 
     public class Parameter : ObservableProperty<UInt32>
     {

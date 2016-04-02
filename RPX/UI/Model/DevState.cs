@@ -21,10 +21,12 @@
 ===========================================================================
 */
 
+using System;
 using System.Collections.ObjectModel;
 
 namespace RPX.UI.Model
 {
+    using Devices.Data;
     using Interfaces;
     using Presets;
     using Utils;
@@ -37,16 +39,28 @@ namespace RPX.UI.Model
 
         public DevState()
         {
+            var device = new DBDevice
+            {
+                Amplifier  = new DBModulesData { Modules = new DBModule[0] },
+                Cabinet    = new DBModulesData { Modules = new DBModule[0] },
+                Distortion = new DBModulesData { Modules = new DBModule[0] },
+                Modulation = new DBModulesData { Modules = new DBModule[0] },
+                Delay      = new DBModulesData { Modules = new DBModule[0] },
+                Reverb     = new DBModulesData { Modules = new DBModule[0] },
+            };
+
             Presets = new ObservableCollection<PresetLibraryItem>(new[]
             {
                 new PresetLibraryItem { Name = "Preset Name", Location = new PresetLocation(Bank.User,    0) },
                 new PresetLibraryItem { Name = "Preset Name", Location = new PresetLocation(Bank.Factory, 0) },
                 new PresetLibraryItem { Name = "Preset Name", Location = new PresetLocation(Bank.Local,   0) },
             });
-            ActivePreset = new ObservableProperty<Preset>(new Preset());
+
+            ActivePreset = new ObservableProperty<Preset>(new Preset(device));
             IsConnectedToDevice = new ObservableProperty<bool>(false);
         }
 
         public void SelectPreset(PresetLocation location) { }
+        public void SetParameterValue(ModuleType module, UInt16 paramid, UInt32 value) { }
     }
 }

@@ -21,12 +21,13 @@
 ===========================================================================
 */
 
+using System;
 using System.Collections.ObjectModel;
 
 namespace RPX.Interfaces
 {
     using Presets;
-    using UI.Utils;
+    using Utils;
 
     /// <summary>
     /// Модель состояния процессора
@@ -38,5 +39,6 @@ namespace RPX.Interfaces
         ObservableCollection<PresetLibraryItem> Presets { get; }
 
         void SelectPreset(PresetLocation location);
+        void SetParameterValue(ModuleType module, UInt16 paramid, UInt32 value);
     }
 }

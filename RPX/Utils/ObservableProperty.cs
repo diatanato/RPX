@@ -24,7 +24,7 @@
 using System;
 using System.ComponentModel;
 
-namespace RPX.UI.Utils
+namespace RPX.Utils
 {
     public class ValueChangedEventArgs<T> : EventArgs
     {

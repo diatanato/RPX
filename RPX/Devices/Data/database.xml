@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<DevicesData>
+  <Device Name="RP1000">
+    <Distortion ID="2432">
+      <Parameter Name="Distortion Enable" ID="2433" Min="0" Max="1">0</Parameter>
+      <Module Name="Arbiter Fuzz Face" ID="1288"/>
+      <Module Name="Boss DS-1 Distortion" ID="1282"/>
+      <Module Name="Boss MT-2 Metal Zone" ID="1289"/>
+      <Module Name="Boss OD-1 Overdrive" ID="1299"/>
+      <Module Name="Boss SD-1 Overdrive" ID="1302"/>
+      <Module Name="DOD 250 Overdrive/Preamp" ID="1283"/>
+      <Module Name="DOD Classic Fuzz" ID="1296"/>
+      <Module Name="DOD Gonkulator Ring Modulator" ID="1293"/>
+      <Module Name="Demeter Fuzzulator" ID="1295"/>
+      <Module Name="DigiTech Death Metal" ID="1294"/>
+      <Module Name="DigiTech Grunge" ID="1287"/>
+      <Module Name="DigiTech Redline Overdrive" ID="1297"/>
+      <Module Name="DigiTech Amp Driver" ID="1298"/>
+      <Module Name="Electro-Harmonix Big Muff Pi" ID="1284"/>
+      <Module Name="Fulltone OCD Overdrive" ID="1300"/>
+      <Module Name="Guyatone Overdrive OD-2" ID="1285"/>
+      <Module Name="Ibanez Modified TS-9" ID="1301"/>
+      <Module Name="Ibanez TS-808 Tube Screamer" ID="1292"/>
+      <Module Name="Ibanez TS-9 Tube Screamer" ID="1280"/>
+      <Module Name="MXR Distortion +" ID="1291"/>
+      <Module Name="ProCo Rat" ID="1281"/>
+      <Module Name="Roger Mayer Octavia" ID="1290"/>
+      <Module Name="Voodoo Labs Sparkle Drive" ID="1286"/>
+    </Distortion>
+    <Amplifier ID="2496">
+      <Module Name="Direct" ShortName="Direct" ID="306"/>
+      <Module Name="1957 Fender Tweed Champ" ShortName="FenderTweedChamp" ID="307"/>
+      <Module Name="1957 Fender Tweed Deluxe" ShortName="FenderTweedDeluxe" ID="308"/>
+      <Module Name="1959 Fender Tweed Bassman" ShortName="FenderTweedBassman" ID="309"/>
+      <Module Name="1962 Fender Brownface Bassman" ShortName="FenderBrownfaceBassman" ID="310"/>
+      <Module Name="1965 Fender Blackface Twin Reverb" ShortName="FenderBlackfaceTwinReverb" ID="311"/>
+      <Module Name="1965 Fender Blackface Deluxe Reverb" ShortName="FenderBlackfaceDeluxeReverb" ID="312"/>
+      <Module Name="1965 Marshall JTM-45" ShortName="MarshallJTM45" ID="313"/>
+      <Module Name="1968 Marshall 100 Watt Super Lead (plexi)" ShortName="Marshall100WattSuperLeadPlexi" ID="314"/>
+      <Module Name="1968 Marshall Jump Panel" ShortName="MarshallJumpPanel" ID="315"/>
+      <Module Name="1977 Marshall Master Volume" ShortName="MarshallMasterVolume" ID="316"/>
+      <Module Name="1983 Marshall JCM800" ShortName="MarshallJCM800" ID="317"/>
+      <Module Name="1993 Marshall JCM900" ShortName="MarshallJCM900" ID="318"/>
+      <Module Name="2001 Marshall JCM2000 (Solo Channel)" ShortName="MarshallJCM2000" ID="319"/>
+      <Module Name="1981 Mesa Boogie Mark II C" ShortName="MesaBoogieMarkIIС" ID="320"/>
+      <Module Name="2001 Mesa Boogie Dual Rectifier" ShortName="MesaBoogieDualRectifier" ID="321"/>
+      <Module Name="1962 Vox AC15" ShortName="VoxAC15" ID="322"/>
+      <Module Name="1963 Vox AC30 Top Boost" ShortName="VoxAC30TopBoost" ID="323"/>
+      <Module Name="1969 Hiwatt Custom 100 DR103" ShortName="HiwattCustom100DR103" ID="324"/>
+      <Module Name="1988 Soldano SLO-100" ShortName="SoldanoSLO100" ID="325"/>
+      <Module Name="1996 Matchless HC30" ShortName="MatchlessHC30" ID="326"/>
+      <Module Name="1999 Carvin Legacy VL-100" ShortName="CarvinLegacyVL100" ID="327"/>
+      <Module Name="DigiTech GSP2101 Artist Clean Tube" ShortName="DigiTech2101CleanTube" ID="328"/>
+      <Module Name="DigiTech GSP2101 Artist Saturated Tube" ShortName="DigiTech2101SaturatedTube" ID="329"/>
+      <Module Name="DigiTech Spank" ShortName="DigiTechSpank" ID="330"/>
+      <Module Name="DigiTech Solo" ShortName="DigiTechSolo" ID="331"/>
+      <Module Name="DigiTech Metal" ShortName="DigiTechMetal" ID="332"/>
+      <Module Name="DigiTech Bright Clean" ShortName="DigiTechBrightClean" ID="333"/>
+      <Module Name="DigiTech Chunk" ShortName="DigiTechChunk" ID="334"/>
+      <Module Name="DigiTech Clean Tube" ShortName="DigiTechCleanTube" ID="335"/>
+      <Module Name="DigiTech Crunch" ShortName="DigiTechCrunch" ID="336"/>
+      <Module Name="DigiTech High Gain" ShortName="DigiTechHighGain" ID="337"/>
+      <Module Name="DigiTech Blues" ShortName="DigiTechBlues" ID="338"/>
+      <Module Name="DigiTech Fuzz" ShortName="DigiTechFuzz" ID="339"/>
+      <Module Name="Jumbo Acoustic" ShortName="JumboAcoustic" ID="340"/>
+      <Module Name="Dreadnaught Acoustic" ShortName="DreadnaughtAcoustic" ID="341"/>
+      <Module Name="DigiTech Stonerrock" ShortName="DigiTechStonerRock" ID="368"/>
+      <Module Name="DigiTech Darkmetal" ShortName="DigiTechDarkMetal" ID="369"/>
+      <Module Name="2002 Mesa Boogie Triple Rectifier" ShortName="MesaBoogieTripleRectifier" ID="370"/>
+      <Module Name="1993 Mesa Boogie Mark IV" ShortName="MesaBoogieMarkIV" ID="371"/>
+      <Module Name="1973 Orange OR 120" ShortName="Orange120" ID="372"/>
+      <Module Name="1999 Peavey 5150 II" ShortName="Peavey5150II" ID="373"/>
+      <Module Name="1989 Randall RG-100" ShortName="RandalRG100" ID="374"/>
+      <Module Name="1984 Roland JC-120" ShortName="RolandJC120" ID="375"/>
+      <Module Name="1967 Sunn 100S" ShortName="Sunn100S" ID="376"/>
+      <Module Name="DigiTech Monster" ShortName="DigiTechMonster" ID="377"/>
+      <Module Name="DigiTech Tweedface" ShortName="DigiTechTweedFace" ID="378"/>
+      <Module Name="DigiTech Blackbass" ShortName="DigiTechBlackfaceBassman" ID="379"/>
+      <Module Name="1960 Gibson GA-40" ShortName="GibsonGA40" ID="380"/>
+      <Module Name="1969 Laney Supergroup" ShortName="LaneySupergroup" ID="381"/>
+      <Module Name="DigiTech Transistor" ShortName="DigiTechTransistor" ID="382"/>
+      <Module Name="DigiTech Brownsound" ShortName="DigiTechBrownSound" ID="383"/>
+      <Module Name="DigiTech Mosh" ShortName="DigiTechMosh" ID="384"/>
+      <Module Name="1995 Matchless Chieftain" ShortName="MatchlessChieftain" ID="385"/>
+      <Module Name="1986 Mesa Boogie .22 Caliber" ShortName="MesaBoogie22Caliber" ID="386"/>
+    </Amplifier>
+  </Device>
+</DevicesData>

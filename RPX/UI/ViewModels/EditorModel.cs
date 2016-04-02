@@ -72,7 +72,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.Amplifier.Enable 
+                return Model.ActivePreset.Value.Amplifier.Value.Enable 
                     ? Visibility.Visible 
                     : Visibility.Collapsed;
             }
@@ -81,7 +81,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.Cabinet.Enable
+                return Model.ActivePreset.Value.Cabinet.Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
@@ -90,7 +90,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.Distortion.Enable
+                return Model.ActivePreset.Value.Distortion.Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
@@ -99,7 +99,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.Modulation.Enable
+                return Model.ActivePreset.Value.Modulation.Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
@@ -108,7 +108,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.Delay.Enable
+                return Model.ActivePreset.Value.Delay.Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
@@ -117,7 +117,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.Reverb.Enable
+                return Model.ActivePreset.Value.Reverb.Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
@@ -126,7 +126,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.Equalizer.Enable
+                return Model.ActivePreset.Value.Equalizer.Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
@@ -135,7 +135,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.Compressor.Enable
+                return Model.ActivePreset.Value.Compressor.Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
@@ -144,7 +144,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.NoiseGate.Enable
+                return Model.ActivePreset.Value.NoiseGate.Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
@@ -153,7 +153,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.Wah.Enable
+                return Model.ActivePreset.Value.Wah.Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }

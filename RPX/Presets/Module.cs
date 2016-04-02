@@ -26,14 +26,47 @@ using System.Linq;
 
 namespace RPX.Presets
 {
+    using Devices.Data;
+
     public class Module
     {
-        public Boolean     Enable     { get { return true; } }
-        public Parameter[] Parameters { get; }
+        public UInt32      ID         { get; private set; }
+        public UInt16      ModuleType { get; private set; }
+        public Boolean     Enable     { get; private set; }
+        public Parameter[] Parameters { get; private set; }
 
-        public Module()
+        public Module(UInt16 type, DBModule module)
         {
-            Parameters = new Parameter[0];
+            ModuleType = type;
+            SetDefaultParameters(module);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="module"></param>
+        private void SetDefaultParameters(DBModule module)
+        {
+            if (module == null)
+            {
+                ID = 0;
+                Enable = false;
+                Parameters = new Parameter[0];
+            }
+            else
+            {
+                ID = module.ID;
+                Enable = true;
+
+                Parameters = module.Parameters.Select(p => new Parameter
+                {
+                    ID = p.ID,
+                    Min = p.Min,
+                    Max = p.Max,
+                    Value = p.Value
+                })
+                .ToArray();
+            }
         }
 
         /// <summary>

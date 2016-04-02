@@ -21,14 +21,19 @@
 ===========================================================================
 */
 
+using System;
 using System.Globalization;
+using System.IO;
 using System.Threading;
 using System.Windows;
+using System.Xml.Serialization;
 
 namespace RPX
 {
     using Devices;
+    using Devices.Data;
     using Interfaces;
+    
     using UI.Model;
 
     /************************************************************************
@@ -49,6 +54,11 @@ namespace RPX
             ServiceStorage.RegisterSingleton<IState, RPXState>();
             ServiceStorage.RegisterSingleton<IService, MessageService>();
             ServiceStorage.RegisterSingleton<IDevice, DeviceClient>();
+
+            using (Stream database = GetResourceStream(new Uri("/Devices/Data/database.xml", UriKind.Relative)).Stream)
+            {
+                ServiceStorage.RegisterSingleton<DBDevicesData, DBDevicesData>(new XmlSerializer(typeof(DBDevicesData)).Deserialize(database) as DBDevicesData);
+            }
         }
 
         /// <summary>

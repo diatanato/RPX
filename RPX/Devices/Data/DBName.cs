@@ -21,33 +21,16 @@
 ===========================================================================
 */
 
-using System;
-using System.IO;
-using System.Windows;
+using System.Xml.Serialization;
 
-namespace RPX.Interfaces
+namespace RPX.Devices.Data
 {
-    using Presets;
-
-    /// <summary>
-    /// Логика взаимодействия приложения и процессора
-    /// </summary>
-    public interface IService : IDisposable
+    public class DBName : DBID
     {
-        void SetNotificationRecipient(Window window);
-        void StartFileWatcher(string path, string extension);
+        [XmlAttribute]
+        public string Name { get; set; }
 
-        bool IsConnected { get; }
-
-        event EventHandler ConnectedToDevice;
-        event EventHandler DisconnectedFromDevice;
-
-        event FileSystemEventHandler FileCreated;
-        event RenamedEventHandler    FileRenamed;
-        event FileSystemEventHandler FileDeleted;
-
-        void SyncPresetLibrary();
-        void SetPreset(PresetLocation location);
-        void SetParameterValue(ModuleType module, UInt16 id, UInt32 value);
+        [XmlAttribute]
+        public string ShortName { get; set; }
     }
 }
