@@ -84,5 +84,34 @@
       <Module Name="1995 Matchless Chieftain" ShortName="MatchlessChieftain" ID="385"/>
       <Module Name="1986 Mesa Boogie .22 Caliber" ShortName="MesaBoogie22Caliber" ID="386"/>
     </Amplifier>
+    <Cabinet ID="2560">
+      <Module Name="Direct" ID="570"/>
+      <Module Name="1x8&quot; '57 Fender Tweed Champ" ID="571"/>
+      <Module Name="1x12&quot; '57 Fender Tweed Deluxe Reverb" ID="572"/>
+      <Module Name="1x12&quot; '65 Fender Blackface Deluxe Reverb" ID="573"/>
+      <Module Name="1x12&quot; '62 Vox AC15 w/20W Vox Speaker" ID="623"/>
+      <Module Name="1x12&quot; '60 Gibson GA-40" ID="624"/>
+      <Module Name="2x12&quot; '57 Fender Blonde Bassman" ID="577"/>
+      <Module Name="2x12&quot; '65 Fender Blackface Twin Reverb" ID="576"/>
+      <Module Name="2x12&quot; '63 Vox AC30 Top Boost w/Jensen Blue Backs" ID="613"/>
+      <Module Name="2x12&quot; '84 Roland Jazz Chorus" ID="626"/>
+      <Module Name="2x15&quot; '68 Sunn 200S w/JBL-Lansings" ID="627"/>
+      <Module Name="4x10&quot; '59 Fender Tweed Bassman" ID="579"/>
+      <Module Name="4x12&quot; Marshall 1969 Straight w/Celestion G12-T70" ID="614"/>
+      <Module Name="4x12&quot; Marshall 1969 Slant w/Celestion 25WGreenbacks" ID="616"/>
+      <Module Name="4x12&quot; Hiwatt Custom w/Fane Speakers" ID="584"/>
+      <Module Name="4x12&quot; '96 VHT Slant w/Celestion Vintage 30's" ID="583"/>
+      <Module Name="4x12&quot; Johnson Straight w/Celestion Vintage 30's" ID="622"/>
+      <Module Name="4x12&quot; '07 Mesa/Boogie w/Celestion Vintage 30's" ID="625"/>
+      <Module Name="4x12&quot; DigiTech Solo" ID="609"/>
+      <Module Name="2x12&quot; DigiTech Bright" ID="611"/>
+      <Module Name="4x12&quot; DigiTech Metal" ID="618"/>
+      <Module Name="4x12&quot; DigiTech Rock" ID="619"/>
+      <Module Name="4x12&quot; DigiTech Alternative" ID="620"/>
+      <Module Name="4x12&quot; DigiTech Vintage" ID="621"/>
+      <Module Name="4x12&quot; DigiTech Chunk" ID="612"/>
+      <Module Name="4x12&quot; DigiTech Spank" ID="608"/>
+      <Module Name="4x12&quot; DigiTech Speaker Compensation" ID="585"/>
+    </Cabinet>
   </Device>
 </DevicesData>

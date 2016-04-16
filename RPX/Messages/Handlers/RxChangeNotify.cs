@@ -22,7 +22,6 @@
 */
 
 using System;
-using System.Windows;
 
 using Hmg.Comm;
 
@@ -54,12 +53,7 @@ namespace RPX.Messages.Handlers
                     case DeviceChangeNotifyCode.PresetLinkablesChange:
                         break;
                     case DeviceChangeNotifyCode.PresetMoved:
-                        {
-                            PresetLocation source      = new PresetLocation(message.ReadByte(), message.ReadByte());
-                            PresetLocation destination = new PresetLocation(message.ReadByte(), message.ReadByte());
-
-                            OnPresetMove(source, destination);
-                        }
+                        OnPresetMove(message);
                         break;
                     case DeviceChangeNotifyCode.ObjectMoved:
                         break;
@@ -80,10 +74,13 @@ namespace RPX.Messages.Handlers
                 Console.WriteLine("RxChangeNotify - Application Error: {0}", ex.Message);
             }
         }
-        
-        private void OnPresetMove(PresetLocation source, PresetLocation destinaton)
+
+        private void OnPresetMove(ProcedureInMessage message)
         {
-            if (destinaton == PresetLocation.EditBuffer)
+            var source      = new PresetLocation(message.ReadByte(), message.ReadByte());
+            var destination = new PresetLocation(message.ReadByte(), message.ReadByte());
+
+            if (destination == PresetLocation.EditBuffer)
             {
                 Model.SelectPreset(source);
             }

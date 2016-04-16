@@ -67,7 +67,8 @@ namespace RPX.UI.Model
         {
             IsConnectedToDevice.Value = true;
 
-            //TODO: проверяем тип процессона в пресете. меняем на подключенный, если отличается
+            //TODO: проверяем тип процессора в пресете. меняем на подключенный, если отличается
+            //TODO: запрашивать пользователя о необходимости сохранения текущего пресета или его потере
 
             ActivePreset.Value = new Preset(ServiceStorage.Resolve<DBDevicesData>().Devices.FirstOrDefault(/*идентификатор процессора*/));
 
@@ -95,6 +96,7 @@ namespace RPX.UI.Model
                     case Bank.User:
                     case Bank.Factory:
                         mService.SetPreset(location);
+                        mService.GetPreset(location);
                         break;
                 }
                 ActivePreset.NotifyPropertyChanged();

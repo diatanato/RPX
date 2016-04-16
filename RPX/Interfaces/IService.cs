@@ -47,6 +47,7 @@ namespace RPX.Interfaces
         event FileSystemEventHandler FileDeleted;
 
         void SyncPresetLibrary();
+        void GetPreset(PresetLocation location);
         void SetPreset(PresetLocation location);
         void SetParameterValue(ModuleType module, UInt16 id, UInt32 value);
     }

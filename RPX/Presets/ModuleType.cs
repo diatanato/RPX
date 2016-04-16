@@ -28,13 +28,34 @@ namespace RPX.Presets
         UNKNOWN = 0,
         WAH = 3,
         COMPRESSOR = 4,
+        //ModPitchPrePosition = 5;
         DISTORTION = 6,
+        //AmpChannelPosition = 7;
         AMPLIFIER = 8,
         CABINET = 9,
+        //FxLoopPosition = 10;
         NOISEGATE = 12,
+        //PreFxThruPosition = 13;
         MODULATION = 14,
         DELAY = 15,
         REVERB = 16,
+        //PostFxThruPosition = 17;
+        //PresetThruPosition = 18;
+        EXPRESSION = 19,
+        //VSwitchExpPedalPosition = 20;
+        //VSwitchPosition = 21;
+        //Lfo1Position = 22;
+        //Lfo2Position = 23;
         EQUALIZAR = 24,
+        //LibCtrlPosition = 26;
+        FOOTSWITCH_COMPRESSOR = 28,
+        FOOTSWITCH_DISTORTION = 29,
+        FOOTSWITCH_MODULATION = 30,
+        FOOTSWITCH_DELAY = 31,
+        FOOTSWITCH_REVERB = 32,
+        //AmpLoopPosition = 33;
+        //StompLoopPosition = 34;
+
+        COUNT = 35
     }
 }

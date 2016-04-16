@@ -24,6 +24,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using RPX.Presets;
 
 namespace RPX.UI.ViewModels
 {
@@ -35,71 +36,73 @@ namespace RPX.UI.ViewModels
         public ObservableProperty<UserControl> Content { get; }
 
         public ICommand ShowEditorCommand { get; }
+
+        public ICommand ShowDistortionEditorCommand { get; }
         public ICommand ShowAmplifierEditorCommand  { get; }
+        public ICommand ShowCabinetEditorCommand { get; }
 
         public EditorModel()
         {
-            ShowEditorCommand          = new ShowEditor(this);
-            ShowAmplifierEditorCommand = new ShowAmplifierEditor(this);
+            Content = new ObservableProperty<UserControl>(null);
 
-            Content = new ObservableProperty<UserControl>(new AmplifierEditor());
+            ShowEditorCommand           = new ShowEditor(this);
+            ShowDistortionEditorCommand = new ShowDistortionEditor(this);
+            ShowAmplifierEditorCommand  = new ShowAmplifierEditor(this);
+            ShowCabinetEditorCommand    = new ShowCabinetEditor(this);
+
+            ShowAmplifierEditorCommand.Execute(null);
         }
 
         #region команды
 
-        private class ShowAmplifierEditor : CommandModel<EditorModel>
+        private class ShowAmplifierEditor : ShowEditor
         {
-            public ShowAmplifierEditor(EditorModel vm) : base(vm) { }
+            public ShowAmplifierEditor(EditorModel model) : base(model, new AmplifierEditor()) { }
+        }
 
-            public override void Execute(object parameter)
-            {
-                Model.Content.Value = new AmplifierEditor();
-            }
+        private class ShowCabinetEditor : ShowEditor
+        {
+            public ShowCabinetEditor(EditorModel model) : base(model, new CabinetEditor()) { }
+        }
+
+        private class ShowDistortionEditor : ShowEditor
+        {
+            public ShowDistortionEditor(EditorModel model) : base(model, new DistortionEditor()) { }
         }
 
         private class ShowEditor : CommandModel<EditorModel>
         {
-            public ShowEditor(EditorModel vm) : base(vm) { }
+            public ShowEditor(EditorModel model, UserControl module = null) : base(model)
+            {
+                mModule = module;
+            }
 
             public override void Execute(object parameter)
             {
-                Model.Content.Value = null;
+                Model.Content.Value = mModule;
             }
+
+            private readonly UserControl mModule;
         }
         #endregion
 
         public Visibility Amplifier
         {
-            get
-            {
-                return Model.ActivePreset.Value.Amplifier.Value.Enable 
-                    ? Visibility.Visible 
-                    : Visibility.Collapsed;
-            }
+            get { return Visibility.Visible; }
         }
         public Visibility Cabinet
         {
-            get
-            {
-                return Model.ActivePreset.Value.Cabinet.Value.Enable
-                    ? Visibility.Visible
-                    : Visibility.Collapsed;
-            }
+            get { return Visibility.Visible; }
         }
         public Visibility Distortion
         {
-            get
-            {
-                return Model.ActivePreset.Value.Distortion.Value.Enable
-                    ? Visibility.Visible
-                    : Visibility.Collapsed;
-            }
+            get { return Visibility.Visible; }
         }
         public Visibility Modulation
         {
             get
             {
-                return Model.ActivePreset.Value.Modulation.Value.Enable
+                return Model.ActivePreset.Value.GetModuleByType(ModuleType.MODULATION).Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
@@ -108,7 +111,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.Delay.Value.Enable
+                return Model.ActivePreset.Value.GetModuleByType(ModuleType.DELAY).Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
@@ -117,7 +120,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.Reverb.Value.Enable
+                return Model.ActivePreset.Value.GetModuleByType(ModuleType.REVERB).Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
@@ -126,7 +129,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.Equalizer.Value.Enable
+                return Model.ActivePreset.Value.GetModuleByType(ModuleType.EQUALIZAR).Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
@@ -135,7 +138,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.Compressor.Value.Enable
+                return Model.ActivePreset.Value.GetModuleByType(ModuleType.COMPRESSOR).Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
@@ -144,7 +147,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.NoiseGate.Value.Enable
+                return Model.ActivePreset.Value.GetModuleByType(ModuleType.NOISEGATE).Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
@@ -153,7 +156,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.Wah.Value.Enable
+                return Model.ActivePreset.Value.GetModuleByType(ModuleType.WAH).Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }

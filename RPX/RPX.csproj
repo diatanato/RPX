@@ -102,17 +102,26 @@
     <Compile Include="UI\Model\RPXState.cs" />
     <Compile Include="UI\ViewModels\AmplifierEditorModel.cs" />
     <Compile Include="UI\ViewModels\BaseModel.cs" />
+    <Compile Include="UI\ViewModels\CabinetEditorModel.cs" />
     <Compile Include="UI\ViewModels\CommandModel.cs" />
     <Compile Include="UI\ViewModels\CollectionModel.cs" />
     <Compile Include="UI\ViewModels\ControlPanelModel.cs" />
+    <Compile Include="UI\ViewModels\DictortionEditorModel.cs" />
     <Compile Include="UI\ViewModels\EditorModel.cs" />
+    <Compile Include="UI\ViewModels\ModuleEditorBaseModel.cs" />
     <Compile Include="UI\ViewModels\PresetLibraryItemModel.cs" />
     <Compile Include="UI\ViewModels\StatusBarModel.cs" />
     <Compile Include="UI\Views\AmplifierEditor.xaml.cs">
       <DependentUpon>AmplifierEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Views\CabinetEditor.xaml.cs">
+      <DependentUpon>CabinetEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Views\ControlPanel.xaml.cs">
       <DependentUpon>ControlPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Views\DistortionEditor.xaml.cs">
+      <DependentUpon>DistortionEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Views\Editor.xaml.cs">
       <DependentUpon>Editor.xaml</DependentUpon>
@@ -139,7 +148,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Views\CabinetEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Views\ControlPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Views\DistortionEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -183,6 +200,8 @@
   <ItemGroup>
     <Folder Include="UI\Styles\" />
     <Folder Include="UI\Utils\" />
+    <Folder Include="UI\Views\Module\" />
+    <Folder Include="UI\Views\MuduleEditor\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Devices\Data\database.xml" />

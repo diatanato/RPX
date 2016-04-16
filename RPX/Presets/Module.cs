@@ -57,7 +57,6 @@ namespace RPX.Presets
             {
                 ID = module.ID;
                 Enable = true;
-
                 Parameters = module.Parameters.Select(p => new Parameter
                 {
                     ID = p.ID,
@@ -69,12 +68,19 @@ namespace RPX.Presets
             }
         }
 
+        /************************************************************************
+        *                                                                       *
+        *                                                                       *
+        *                                                                       *
+        ************************************************************************/
+
         /// <summary>
         /// Обновление значения параметра модуля
         /// </summary>
         /// <param name="id">идентификатор параметра</param>
         /// <param name="value">новое значение параметра</param>
         /// <returns>успех или провал операции</returns>
+
         public bool SetParameter(UInt16 id, UInt32 value)
         {
             var parameter = Parameters.FirstOrDefault(p => p.ID == id);

@@ -146,6 +146,11 @@ namespace RPX.Devices
             mDevice.SendMessage(new GetBankPresetNames(Bank.Factory));
         }
 
+        public void GetPreset(PresetLocation location)
+        {
+            mDevice.SendMessage(new GetPreset(location));
+        }
+
         public void SetPreset(PresetLocation location)
         {
             mDevice.SendMessage(new SetPreset(location));

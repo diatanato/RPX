@@ -21,42 +21,12 @@
 ===========================================================================
 */
 
-using System;
-using System.Linq;
-
 namespace RPX.UI.ViewModels
 {
-    using Devices.Data;
     using Presets;
-    using Utils;
 
-    public class AmplifierEditorModel : BaseModel
+    public class AmplifierEditorModel : ModuleEditorBaseModel
     {
-        public DBModule[] Modules { get { return Model.ActivePreset.Value.Device.Amplifier.Modules; } }
-        public ObservableProperty<DBModule> SelectedModule { get; private set; }
-
-        public AmplifierEditorModel()
-        {
-            SelectedModule = new ObservableProperty<DBModule>();
-            SelectedModule.Changed += (sender, e) => Model.SetParameterValue(ModuleType.AMPLIFIER, Model.ActivePreset.Value.Device.Amplifier.ID, e.Value.ID);
-
-            OnPresetChanged();
-
-            Model.ActivePreset.Changed += (sender, e) => OnPresetChanged();
-        }
-
-        private void OnPresetChanged()
-        {
-            NotifyPropertyChanged(nameof(Modules));
-
-            SelectCurrentModule(Model.ActivePreset.Value.Amplifier.Value.ID);
-
-            Model.ActivePreset.Value.Amplifier.Changed += (sender, e) => SelectCurrentModule(e.Value.ID);
-        }
-
-        private void SelectCurrentModule(UInt32 id)
-        {
-            SelectedModule.Value = Modules.FirstOrDefault(p => p.ID == id);
-        }
+        public AmplifierEditorModel() : base(ModuleType.AMPLIFIER) { }
     }
 }

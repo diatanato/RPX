@@ -21,33 +21,19 @@
 ===========================================================================
 */
 
-using System;
-using System.Windows.Input;
-
-namespace RPX.UI.ViewModels
+namespace RPX.UI.Views
 {
     /************************************************************************
     *                                                                       *
-    *  Базовый класс для команд                                             *
+    *                                                                       *
     *                                                                       *
     ************************************************************************/
 
-    public abstract class CommandModel<T> : ICommand where T : BaseModel
+    public partial class DistortionEditor
     {
-        public virtual event EventHandler CanExecuteChanged = (sender, e) => { };
-
-        public T Model { get; private set; }
-
-        protected CommandModel(T model)
+        public DistortionEditor()
         {
-            Model = model;
+            InitializeComponent();
         }
-
-        public virtual bool CanExecute(object parameter)
-        {
-            return true;
-        }
-
-        public abstract void Execute(object parameter);
     }
 }

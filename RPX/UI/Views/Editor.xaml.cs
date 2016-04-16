@@ -21,10 +21,6 @@
 ===========================================================================
 */
 
-using System.Windows.Input;
-using System.Windows.Media.Effects;
-using System.Windows.Shapes;
-
 namespace RPX.UI.Views
 {
     /************************************************************************
@@ -38,18 +34,6 @@ namespace RPX.UI.Views
         public Editor()
         {
             InitializeComponent();
-        }
-
-        private DropShadowEffect shadow = new DropShadowEffect { ShadowDepth = 0, BlurRadius = 15 };
-        
-        private void Rectangle_MouseEnter(object sender, MouseEventArgs e)
-        {
-            ((Rectangle)sender).Effect = shadow;
-        }
-
-        private void Rectangle_MouseLeave(object sender, MouseEventArgs e)
-        {
-            ((Rectangle)sender).Effect = null;
         }
     }
 }
