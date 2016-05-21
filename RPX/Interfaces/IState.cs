@@ -38,6 +38,7 @@ namespace RPX.Interfaces
         ObservableProperty<Preset> ActivePreset { get; }
         ObservableCollection<PresetLibraryItem> Presets { get; }
 
+        void LoadPreset(String path);
         void SelectPreset(PresetLocation location);
         void SetParameterValue(ModuleType module, UInt16 paramid, UInt32 value);
     }

@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="RPX.UI.Views.Amplifier"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:v="clr-namespace:RPX.UI.Views"
+             xmlns:vm="clr-namespace:RPX.UI.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="600">
+    <UserControl.DataContext>
+        <vm:AmplifierModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <Rectangle Fill="White" Stroke="Black" Margin="0" Width="600" Height="200" RadiusX="10" RadiusY="10" StrokeThickness="4"/>
+        <v:Knob Style="{DynamicResource DefaultKnob}" Margin="50,0,400,0" Value="{Binding Gain.Value}"/>
+        <v:Knob Style="{DynamicResource DefaultKnob}" Margin="140,0,310,0"/>
+        <v:Knob Style="{DynamicResource DefaultKnob}" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <v:Knob Style="{DynamicResource DefaultKnob}" Margin="310,0,140,0"/>
+        <v:Knob Style="{DynamicResource DefaultKnob}" Margin="400,0,50,0"/>
+    </Grid>
+</UserControl>

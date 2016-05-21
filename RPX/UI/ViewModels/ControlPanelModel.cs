@@ -44,15 +44,15 @@ namespace RPX.UI.ViewModels
         public ControlPanelModel()
         {
             SelectedPreset = new ObservableProperty<PresetLibraryItemModel>();
-            Presets = new CollectionModel<PresetLibraryItem, PresetLibraryItemModel>(Model.Presets, item => new PresetLibraryItemModel(item));
-
-            Presets.OrderBy = new List<Func<PresetLibraryItem, IComparable>>
+            Presets = new CollectionModel<PresetLibraryItem, PresetLibraryItemModel>(Model.Presets, item => new PresetLibraryItemModel(item))
             {
-                preset => preset.Location.Bank,
-                preset => preset.Location.Slot,
-                preset => preset.Name
+                OrderBy = new List<Func<PresetLibraryItem, IComparable>>
+                {
+                    preset => preset.Location.Bank,
+                    preset => preset.Location.Slot,
+                    preset => preset.Name
+                }
             };
-
             SelectedPreset.Changed += (sender, e) =>
             {
                 if (e.Value != null)
@@ -62,9 +62,9 @@ namespace RPX.UI.ViewModels
             };
             Model.ActivePreset.Changed += (sender, e) =>
             {
-                SelectedPreset.Value = e.Value.Location != null 
-                    ? new PresetLibraryItemModel(Presets.SourceCollection.First(p => p.Location == e.Value.Location)) 
-                    : null;
+                var item = Presets.SourceCollection.FirstOrDefault(p => p.Location == e.Value.Location);
+
+                SelectedPreset.Value = item != null ? new PresetLibraryItemModel(item) : null;
             };
         }
     }

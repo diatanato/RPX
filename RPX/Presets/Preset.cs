@@ -34,35 +34,24 @@ namespace RPX.Presets
 
         public PresetLocation Location { get; set; }
 
-        public ObservableProperty<Module> Amplifier  { get; }
-        public ObservableProperty<Module> Cabinet    { get; }
-        public ObservableProperty<Module> Distortion { get; }
-        public ObservableProperty<Module> Modulation { get; }
-        public ObservableProperty<Module> Delay      { get; }
-        public ObservableProperty<Module> Reverb     { get; }
-        public ObservableProperty<Module> Equalizer  { get; }
-        public ObservableProperty<Module> Compressor { get; }
-        public ObservableProperty<Module> NoiseGate  { get; }
-        public ObservableProperty<Module> Wah        { get; }
+        public ObservableProperty<Module>[] Modules { get; }
 
         public Preset(DBDevice device)
         {
             Device = device;
 
-            Amplifier  = new ObservableProperty<Module>(new Module(Device.Amplifier.ID, null));
-            Cabinet    = new ObservableProperty<Module>(new Module(0, null));
-            Distortion = new ObservableProperty<Module>(new Module(0, null));
-            Modulation = new ObservableProperty<Module>(new Module(0, null));
-            Delay      = new ObservableProperty<Module>(new Module(0, null));
-            Reverb     = new ObservableProperty<Module>(new Module(0, null));
-            Equalizer  = new ObservableProperty<Module>(new Module(0, null));
-            Compressor = new ObservableProperty<Module>(new Module(0, null));
-            NoiseGate  = new ObservableProperty<Module>(new Module(0, null));
-            Wah        = new ObservableProperty<Module>(new Module(0, null));
+            Modules = new ObservableProperty<Module>[(byte)ModuleType.COUNT];
+
+            for (var i = 0; i < (byte)ModuleType.COUNT; i++)
+            {
+                Modules[i] = new ObservableProperty<Module>(new Module(Device.GetModulesData((ModuleType)i).ID, null));
+            }
         }
 
         public void SetParameter(ModuleType type, UInt16 paramid, UInt32 value)
         {
+            Console.WriteLine($"module: {type}, param: {paramid}, value: {value}");
+
             var module = GetModuleByType(type);
             
             if (module.Value.ModuleType == paramid)
@@ -71,28 +60,16 @@ namespace RPX.Presets
                 {
                     module.Value = new Module(paramid, Device.GetModule(type, value));
                 }
+                return;
             }
-            else
-            {
-                module.Value.SetParameter(paramid, value);
-            }
-            Console.WriteLine($"module: {type}, param: {paramid}, value: {value}");
+            module.Value.SetParameter(paramid, value);
         }
 
         public ObservableProperty<Module> GetModuleByType(ModuleType type)
         {
-            switch (type)
+            if ((byte)type < (byte)ModuleType.COUNT)
             {
-                case ModuleType.AMPLIFIER:  return Amplifier;
-                case ModuleType.CABINET:    return Cabinet;
-                case ModuleType.DISTORTION: return Distortion;
-                case ModuleType.MODULATION: return Modulation;
-                case ModuleType.DELAY:      return Delay;
-                case ModuleType.REVERB:     return Reverb;
-                case ModuleType.EQUALIZAR:  return Equalizer;
-                case ModuleType.COMPRESSOR: return Compressor;
-                case ModuleType.NOISEGATE:  return NoiseGate;
-                case ModuleType.WAH:        return Wah;
+                return Modules[(byte)type];
             }
             return new ObservableProperty<Module>(new Module(0, null));
         }

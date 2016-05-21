@@ -20,6 +20,6 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <TextBlock HorizontalAlignment="Center" Text="Amplifier" VerticalAlignment="Center" FontSize="16"/>
+        <v:Amplifier VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </Grid>
 </UserControl>

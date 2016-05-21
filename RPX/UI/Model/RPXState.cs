@@ -58,8 +58,8 @@ namespace RPX.UI.Model
             mService.FileRenamed += OnRenamedPreset;
             mService.FileDeleted += OnDeletedPreset;
             
-            mService.StartFileWatcher(PresetsDirectory, "*.rp1000p"); 
-
+            mService.StartFileWatcher(PresetsDirectory, "*.rp1000p");
+            
             SyncPresetLibrary();
         }
 
@@ -67,12 +67,19 @@ namespace RPX.UI.Model
         {
             IsConnectedToDevice.Value = true;
 
+            //mDevice.SendMessage(new GetIdentity());
+            //mDevice.SendMessage(new GetConfig());
+            //mDevice.SendMessage(new GetGlobalParams());
+
             //TODO: проверяем тип процессора в пресете. меняем на подключенный, если отличается
             //TODO: запрашивать пользователя о необходимости сохранения текущего пресета или его потере
 
             ActivePreset.Value = new Preset(ServiceStorage.Resolve<DBDevicesData>().Devices.FirstOrDefault(/*идентификатор процессора*/));
 
+            mService.SetParameterValue(ModuleType.UNKNOWN, 2608, 1);
             SyncPresetLibrary();
+            mService.GetPreset(PresetLocation.EditBuffer);
+            mService.SetParameterValue(ModuleType.UNKNOWN, 2608, 1);
         }
 
         private void DisconnectedFromDevice(object sender, EventArgs e)
@@ -148,7 +155,10 @@ namespace RPX.UI.Model
                     Location = new PresetLocation(Bank.Local, 0) { Path = file }
                 });
             }
-            mService.SyncPresetLibrary();
+            if (IsConnectedToDevice.Value)
+            {
+                mService.SyncPresetLibrary();
+            }
         }
 
         /// <summary>

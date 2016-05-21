@@ -27,6 +27,7 @@ using System.IO;
 using System.Threading;
 using System.Windows;
 using System.Xml.Serialization;
+using RPX.Utils;
 
 namespace RPX
 {
@@ -42,7 +43,7 @@ namespace RPX
     *                                                                       *
     ************************************************************************/
 
-    public partial class App
+    public partial class App : ISingleInstanceApp
     {
         public App()
         {
@@ -62,14 +63,39 @@ namespace RPX
         }
 
         /// <summary>
+        /// Обрабатываем входящие параметры при старте приложения
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            SignalExternalCommandLineArgs(e.Args);
+        }
+
+        /// <summary>
         /// Отключаемся от устройства при выходе
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+
         private void Application_Exit(object sender, ExitEventArgs e)
         {
             ServiceStorage.Resolve<IDevice>().Dispose();
             ServiceStorage.Resolve<IService>().Dispose();
+        }
+
+        /// <summary>
+        /// Обрабатываем входящие параметры приложения
+        /// </summary>
+        /// <param name="args"></param>
+        
+        public void SignalExternalCommandLineArgs(String[] args)
+        {
+            if (args.Length > 0)
+            {
+                ServiceStorage.Resolve<IState>().LoadPreset(args[1]);
+            }
         }
     }
 }

@@ -61,20 +61,19 @@ namespace RPX.Devices
         public MessageService()
         {
             mDevice = ServiceStorage.Resolve<IDevice>();
-            
+
             mDevice.Connected += delegate
             {
                 if (IsConnected)
                     return;
                 IsConnected = true;
 
+                // TODO: обернуть в методы и перенести вызов в IState
+
                 mDevice.SendMessage(new GetIdentity());
                 mDevice.SendMessage(new GetConfig());
                 mDevice.SendMessage(new GetGlobalParams());
-                mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.RxParamValue, new byte[] { 0x30, 0x0A, 0x00, 0x01 }));
-                mDevice.SendMessage(new GetPreset(PresetLocation.EditBuffer));
-                mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqModifierLinkablesList, new byte[] { 0x00, 0x01 }));
-                
+
                 ConnectedToDevice?.Invoke(this, EventArgs.Empty);
             };
             mDevice.Disconnected += delegate
@@ -93,18 +92,12 @@ namespace RPX.Devices
         {
             if (mMessageHandlers == null)
             {
-                mMessageHandlers = new Dictionary<CommMsgID, MessageHandler>();
-
-                var handlers =
+                mMessageHandlers =
                     Assembly.GetExecutingAssembly()
                         .GetTypes()
                         .Where(t => t.IsSubclassOf(typeof(MessageHandler)))
-                        .Select(handler => Activator.CreateInstance(handler) as MessageHandler);
-
-                foreach (var handler in handlers)
-                {
-                    mMessageHandlers.Add(handler.MessageType, handler);
-                }
+                        .Select(handler => Activator.CreateInstance(handler) as MessageHandler)
+                        .ToDictionary(handler => handler.MessageType);
             }
             if (mMessageHandlers.ContainsKey(message.ID))
             {
@@ -144,6 +137,10 @@ namespace RPX.Devices
         {
             mDevice.SendMessage(new GetBankPresetNames(Bank.User));
             mDevice.SendMessage(new GetBankPresetNames(Bank.Factory));
+
+            // TODO: обернуть в метод и перенести вызов в IState
+
+            mDevice.SendMessage(new ProcedureOutMessage(CommMsgID.ReqModifierLinkablesList, new byte[] { 0x00, 0x01 }));
         }
 
         public void GetPreset(PresetLocation location)

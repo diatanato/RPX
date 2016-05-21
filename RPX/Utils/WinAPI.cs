@@ -43,6 +43,9 @@ namespace RPX.Utils
         public static extern IntPtr RegisterDeviceNotification(IntPtr hRecipient, IntPtr filter, Int32 flags);
 
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        public static extern uint UnregisterDeviceNotification(IntPtr hHandle);
+        public static extern UInt32 UnregisterDeviceNotification(IntPtr hHandle);
+
+        [DllImport("shell32.dll", CharSet = CharSet.Auto)]
+        public static extern void SHChangeNotify(UInt32 wEventId, UInt32 uFlags, IntPtr dwItem1, IntPtr dwItem2);
     }
 }

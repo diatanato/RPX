@@ -44,6 +44,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -69,6 +70,7 @@
     <Compile Include="Devices\Data\DBName.cs" />
     <Compile Include="Devices\Data\DBID.cs" />
     <Compile Include="Devices\Data\DBParameter.cs" />
+    <Compile Include="Devices\DevClient.cs" />
     <Compile Include="Devices\MessageService.cs" />
     <Compile Include="Interfaces\IDevice.cs" />
     <Compile Include="Interfaces\IService.cs" />
@@ -101,6 +103,16 @@
     <Compile Include="Presets\PresetLocation.cs" />
     <Compile Include="Presets\PresetLibraryItem.cs" />
     <Compile Include="ServiceStorage.cs" />
+    <Compile Include="UI\ViewModels\AmplifierModel.cs" />
+    <Compile Include="UI\ViewModels\ParameterModel.cs" />
+    <Compile Include="UI\Views\Amplifier.xaml.cs">
+      <DependentUpon>Amplifier.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Views\Knob.xaml.cs">
+      <DependentUpon>Knob.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\DependencyProperty.cs" />
+    <Compile Include="Utils\SingleInstance.cs" />
     <Compile Include="UI\Model\DevState.cs" />
     <Compile Include="UI\Model\RPXState.cs" />
     <Compile Include="UI\ViewModels\AmplifierEditorModel.cs" />
@@ -147,6 +159,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UI\Styles\Knobs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Views\Amplifier.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Views\AmplifierEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -164,6 +184,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Views\Editor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Views\Knob.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -201,7 +225,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="UI\Styles\" />
     <Folder Include="UI\Utils\" />
     <Folder Include="UI\Views\Module\" />
     <Folder Include="UI\Views\MuduleEditor\" />

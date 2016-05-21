@@ -60,6 +60,7 @@ namespace RPX.UI.Model
             IsConnectedToDevice = new ObservableProperty<bool>(false);
         }
 
+        public void LoadPreset(String path) { }
         public void SelectPreset(PresetLocation location) { }
         public void SetParameterValue(ModuleType module, UInt16 paramid, UInt32 value) { }
     }

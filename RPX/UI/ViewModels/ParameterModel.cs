@@ -22,24 +22,38 @@
 */
 
 using System;
-using RPX.Utils;
 
-namespace RPX
+namespace RPX.UI.ViewModels
 {
-    class Program
+    using Presets;
+
+    public class ParameterModel : BaseModel
     {
-        [STAThread]
-        static void Main()
+        private readonly ModuleType mModule;
+        private readonly Parameter  mParameter;
+
+        public ParameterModel(ModuleType module, Parameter parameter)
         {
-            if (SingleInstance<App>.InitializeAsFirstInstance(Properties.Settings.Default.AppID))
-            {
-                var application = new App();
+            mModule = module;
+            mParameter = parameter;
 
-                application.InitializeComponent();
-                application.Run();
+            mParameter.Changed += (sender, args) => NotifyPropertyChanged(nameof(Value));
+        }
 
-                SingleInstance<App>.Clean();
-            }
+        public UInt32 Value
+        {
+            get { return mParameter.Value; }
+            set { Model.SetParameterValue(mModule, mParameter.ID, value); }
+        }
+
+        public UInt32 Min
+        {
+            get { return mParameter.Min; }
+        }
+
+        public UInt32 Max
+        {
+            get { return mParameter.Max; }
         }
     }
 }

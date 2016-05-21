@@ -22,5 +22,17 @@ namespace RPX.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{C2BE396D-189E-4046-93DC-EC6F9EB514A9}")]
+        public string AppID {
+            get {
+                return ((string)(this["AppID"]));
+            }
+            set {
+                this["AppID"] = value;
+            }
+        }
     }
 }

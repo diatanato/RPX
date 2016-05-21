@@ -44,15 +44,15 @@ namespace RPX.Devices.Data
         {
             switch (type)
             {
-                case ModuleType.WAH:        return Wah;
-                case ModuleType.COMPRESSOR: return Compressor;
-                case ModuleType.NOISEGATE:  return Noisegate;
+                //case ModuleType.WAH:        return Wah;
+                //case ModuleType.COMPRESSOR: return Compressor;
+                //case ModuleType.NOISEGATE:  return Noisegate;
                 case ModuleType.AMPLIFIER:  return Amplifier;
                 case ModuleType.CABINET:    return Cabinet;
                 case ModuleType.DISTORTION: return Distortion;
-                case ModuleType.MODULATION: return Modulation;
-                case ModuleType.DELAY:      return Delay;
-                case ModuleType.REVERB:     return Reverb;
+                //case ModuleType.MODULATION: return Modulation;
+                //case ModuleType.DELAY:      return Delay;
+                //case ModuleType.REVERB:     return Reverb;
             }
             return new DBModulesData { Modules = null };
         }
