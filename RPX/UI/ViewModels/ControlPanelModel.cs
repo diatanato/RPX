@@ -62,9 +62,7 @@ namespace RPX.UI.ViewModels
             };
             Model.ActivePreset.Changed += (sender, e) =>
             {
-                var item = Presets.SourceCollection.FirstOrDefault(p => p.Location == e.Value.Location);
-
-                SelectedPreset.Value = item != null ? new PresetLibraryItemModel(item) : null;
+                SelectedPreset.Value = Presets.FirstOrDefault(p => p.Location == e.Value.Location);
             };
         }
     }

@@ -12,10 +12,37 @@
     </UserControl.DataContext>
     <Grid>
         <Rectangle Fill="White" Stroke="Black" Margin="0" Width="600" Height="200" RadiusX="10" RadiusY="10" StrokeThickness="4"/>
-        <v:Knob Style="{DynamicResource DefaultKnob}" Margin="50,0,400,0" Value="{Binding Gain.Value}"/>
-        <v:Knob Style="{DynamicResource DefaultKnob}" Margin="140,0,310,0"/>
-        <v:Knob Style="{DynamicResource DefaultKnob}" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <v:Knob Style="{DynamicResource DefaultKnob}" Margin="310,0,140,0"/>
-        <v:Knob Style="{DynamicResource DefaultKnob}" Margin="400,0,50,0"/>
+        <v:Knob 
+            Style="{DynamicResource DefaultKnob}" 
+            Margin="50,0,400,0" 
+            Value="{Binding Gain.Value}" 
+            MinValue="{Binding Gain.Min}"
+            MaxValue="{Binding Gain.Max}"/>
+        <v:Knob 
+            Style="{DynamicResource DefaultKnob}" 
+            Margin="140,0,310,0"
+            Value="{Binding Bass.Value}" 
+            MinValue="{Binding Bass.Min}"
+            MaxValue="{Binding Bass.Max}"/>
+        <v:Knob 
+            Style="{DynamicResource DefaultKnob}" 
+            Margin="0" 
+            VerticalAlignment="Center" 
+            HorizontalAlignment="Center"
+            Value="{Binding Mid.Value}" 
+            MinValue="{Binding Mid.Min}"
+            MaxValue="{Binding Mid.Max}"/>
+        <v:Knob 
+            Style="{DynamicResource DefaultKnob}" 
+            Margin="310,0,140,0"
+            Value="{Binding Treble.Value}" 
+            MinValue="{Binding Treble.Min}"
+            MaxValue="{Binding Treble.Max}"/>
+        <v:Knob 
+            Style="{DynamicResource DefaultKnob}" 
+            Margin="400,0,50,0"
+            Value="{Binding Level.Value}" 
+            MinValue="{Binding Level.Min}"
+            MaxValue="{Binding Level.Max}"/>
     </Grid>
 </UserControl>

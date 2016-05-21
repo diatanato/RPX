@@ -21,6 +21,8 @@
 ===========================================================================
 */
 
+using System;
+
 namespace RPX.UI.ViewModels
 {
     using Presets;
@@ -36,16 +38,48 @@ namespace RPX.UI.ViewModels
 
         public AmplifierModel()
         {
-            GetAmplifierParameters();
+            OnPresetChanged();
+
+            Model.ActivePreset.Changed += (sender, e) => OnPresetChanged();
         }
 
-        private void GetAmplifierParameters()
+        private void OnPresetChanged()
         {
-            Gain   = new ParameterModel(ModuleType.AMPLIFIER, new Parameter { Max = 99 });
-            Bass   = new ParameterModel(ModuleType.AMPLIFIER, new Parameter { Max = 90 });
-            Mid    = new ParameterModel(ModuleType.AMPLIFIER, new Parameter { Max = 90 });
-            Treble = new ParameterModel(ModuleType.AMPLIFIER, new Parameter { Max = 90 });
-            Level  = new ParameterModel(ModuleType.AMPLIFIER, new Parameter { Max = 99 });
+            var module = Model.ActivePreset.Value.GetModuleByType(ModuleType.AMPLIFIER);
+
+            module.Changed += (sender, e) => GetAmplifierParameters(e.Value);
+
+            GetAmplifierParameters(module.Value);
+        }
+
+        private void GetAmplifierParameters(Module module)
+        {
+            foreach (var parameter in module.Parameters)
+            {
+                switch (parameter.ID)
+                {
+                    case 2497:
+                        Gain   = new ParameterModel(ModuleType.AMPLIFIER, parameter);
+                        NotifyPropertyChanged(nameof(Gain));
+                        break;
+                    case 2507:
+                        Bass   = new ParameterModel(ModuleType.AMPLIFIER, parameter);
+                        NotifyPropertyChanged(nameof(Bass));
+                        break;
+                    case 2508:
+                        Mid    = new ParameterModel(ModuleType.AMPLIFIER, parameter);
+                        NotifyPropertyChanged(nameof(Mid));
+                        break;
+                    case 2509:
+                        Treble = new ParameterModel(ModuleType.AMPLIFIER, parameter);
+                        NotifyPropertyChanged(nameof(Treble));
+                        break;
+                    case 2498:
+                        Level  = new ParameterModel(ModuleType.AMPLIFIER, parameter);
+                        NotifyPropertyChanged(nameof(Level));
+                        break;
+                }
+            }
         }
     }
 }

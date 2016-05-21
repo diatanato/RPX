@@ -76,10 +76,9 @@ namespace RPX.UI.Model
 
             ActivePreset.Value = new Preset(ServiceStorage.Resolve<DBDevicesData>().Devices.FirstOrDefault(/*идентификатор процессора*/));
 
-            mService.SetParameterValue(ModuleType.UNKNOWN, 2608, 1);
+            mService.SetParameterValue(ModuleType.UNKNOWN, 12298, 1);
             SyncPresetLibrary();
-            mService.GetPreset(PresetLocation.EditBuffer);
-            mService.SetParameterValue(ModuleType.UNKNOWN, 2608, 1);
+            //mService.SetParameterValue(ModuleType.UNKNOWN, 12298, 0);
         }
 
         private void DisconnectedFromDevice(object sender, EventArgs e)

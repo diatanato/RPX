@@ -28,61 +28,385 @@
       <Module Name="Voodoo Labs Sparkle Drive" ID="1286"/>
     </Distortion>
     <Amplifier ID="2496">
-      <Module Name="Direct" ShortName="Direct" ID="306"/>
-      <Module Name="1957 Fender Tweed Champ" ShortName="FenderTweedChamp" ID="307"/>
-      <Module Name="1957 Fender Tweed Deluxe" ShortName="FenderTweedDeluxe" ID="308"/>
-      <Module Name="1959 Fender Tweed Bassman" ShortName="FenderTweedBassman" ID="309"/>
-      <Module Name="1962 Fender Brownface Bassman" ShortName="FenderBrownfaceBassman" ID="310"/>
-      <Module Name="1965 Fender Blackface Twin Reverb" ShortName="FenderBlackfaceTwinReverb" ID="311"/>
-      <Module Name="1965 Fender Blackface Deluxe Reverb" ShortName="FenderBlackfaceDeluxeReverb" ID="312"/>
-      <Module Name="1965 Marshall JTM-45" ShortName="MarshallJTM45" ID="313"/>
-      <Module Name="1968 Marshall 100 Watt Super Lead (plexi)" ShortName="Marshall100WattSuperLeadPlexi" ID="314"/>
-      <Module Name="1968 Marshall Jump Panel" ShortName="MarshallJumpPanel" ID="315"/>
-      <Module Name="1977 Marshall Master Volume" ShortName="MarshallMasterVolume" ID="316"/>
-      <Module Name="1983 Marshall JCM800" ShortName="MarshallJCM800" ID="317"/>
-      <Module Name="1993 Marshall JCM900" ShortName="MarshallJCM900" ID="318"/>
-      <Module Name="2001 Marshall JCM2000 (Solo Channel)" ShortName="MarshallJCM2000" ID="319"/>
-      <Module Name="1981 Mesa Boogie Mark II C" ShortName="MesaBoogieMarkIIС" ID="320"/>
-      <Module Name="2001 Mesa Boogie Dual Rectifier" ShortName="MesaBoogieDualRectifier" ID="321"/>
-      <Module Name="1962 Vox AC15" ShortName="VoxAC15" ID="322"/>
-      <Module Name="1963 Vox AC30 Top Boost" ShortName="VoxAC30TopBoost" ID="323"/>
-      <Module Name="1969 Hiwatt Custom 100 DR103" ShortName="HiwattCustom100DR103" ID="324"/>
-      <Module Name="1988 Soldano SLO-100" ShortName="SoldanoSLO100" ID="325"/>
-      <Module Name="1996 Matchless HC30" ShortName="MatchlessHC30" ID="326"/>
-      <Module Name="1999 Carvin Legacy VL-100" ShortName="CarvinLegacyVL100" ID="327"/>
-      <Module Name="DigiTech GSP2101 Artist Clean Tube" ShortName="DigiTech2101CleanTube" ID="328"/>
-      <Module Name="DigiTech GSP2101 Artist Saturated Tube" ShortName="DigiTech2101SaturatedTube" ID="329"/>
-      <Module Name="DigiTech Spank" ShortName="DigiTechSpank" ID="330"/>
-      <Module Name="DigiTech Solo" ShortName="DigiTechSolo" ID="331"/>
-      <Module Name="DigiTech Metal" ShortName="DigiTechMetal" ID="332"/>
-      <Module Name="DigiTech Bright Clean" ShortName="DigiTechBrightClean" ID="333"/>
-      <Module Name="DigiTech Chunk" ShortName="DigiTechChunk" ID="334"/>
-      <Module Name="DigiTech Clean Tube" ShortName="DigiTechCleanTube" ID="335"/>
-      <Module Name="DigiTech Crunch" ShortName="DigiTechCrunch" ID="336"/>
-      <Module Name="DigiTech High Gain" ShortName="DigiTechHighGain" ID="337"/>
-      <Module Name="DigiTech Blues" ShortName="DigiTechBlues" ID="338"/>
-      <Module Name="DigiTech Fuzz" ShortName="DigiTechFuzz" ID="339"/>
-      <Module Name="Jumbo Acoustic" ShortName="JumboAcoustic" ID="340"/>
-      <Module Name="Dreadnaught Acoustic" ShortName="DreadnaughtAcoustic" ID="341"/>
-      <Module Name="DigiTech Stonerrock" ShortName="DigiTechStonerRock" ID="368"/>
-      <Module Name="DigiTech Darkmetal" ShortName="DigiTechDarkMetal" ID="369"/>
-      <Module Name="2002 Mesa Boogie Triple Rectifier" ShortName="MesaBoogieTripleRectifier" ID="370"/>
-      <Module Name="1993 Mesa Boogie Mark IV" ShortName="MesaBoogieMarkIV" ID="371"/>
-      <Module Name="1973 Orange OR 120" ShortName="Orange120" ID="372"/>
-      <Module Name="1999 Peavey 5150 II" ShortName="Peavey5150II" ID="373"/>
-      <Module Name="1989 Randall RG-100" ShortName="RandalRG100" ID="374"/>
-      <Module Name="1984 Roland JC-120" ShortName="RolandJC120" ID="375"/>
-      <Module Name="1967 Sunn 100S" ShortName="Sunn100S" ID="376"/>
-      <Module Name="DigiTech Monster" ShortName="DigiTechMonster" ID="377"/>
-      <Module Name="DigiTech Tweedface" ShortName="DigiTechTweedFace" ID="378"/>
-      <Module Name="DigiTech Blackbass" ShortName="DigiTechBlackfaceBassman" ID="379"/>
-      <Module Name="1960 Gibson GA-40" ShortName="GibsonGA40" ID="380"/>
-      <Module Name="1969 Laney Supergroup" ShortName="LaneySupergroup" ID="381"/>
-      <Module Name="DigiTech Transistor" ShortName="DigiTechTransistor" ID="382"/>
-      <Module Name="DigiTech Brownsound" ShortName="DigiTechBrownSound" ID="383"/>
-      <Module Name="DigiTech Mosh" ShortName="DigiTechMosh" ID="384"/>
-      <Module Name="1995 Matchless Chieftain" ShortName="MatchlessChieftain" ID="385"/>
-      <Module Name="1986 Mesa Boogie .22 Caliber" ShortName="MesaBoogie22Caliber" ID="386"/>
+      <Module Name="Direct" ShortName="Direct" ID="306">
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">99</Parameter>
+      </Module>
+      <Module Name="1957 Fender Tweed Champ" ShortName="FenderTweedChamp" ID="307">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">60</Parameter>
+      </Module>
+      <Module Name="1957 Fender Tweed Deluxe" ShortName="FenderTweedDeluxe" ID="308">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">75</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">87</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">55</Parameter>
+      </Module>
+      <Module Name="1959 Fender Tweed Bassman" ShortName="FenderTweedBassman" ID="309">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">65</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">63</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">55</Parameter>
+      </Module>
+      <Module Name="1962 Fender Brownface Bassman" ShortName="FenderBrownfaceBassman" ID="310">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">38</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">60</Parameter>
+      </Module>
+      <Module Name="1965 Fender Blackface Twin Reverb" ShortName="FenderBlackfaceTwinReverb" ID="311">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">50</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">55</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">54</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">65</Parameter>
+      </Module>
+      <Module Name="1965 Fender Blackface Deluxe Reverb" ShortName="FenderBlackfaceDeluxeReverb" ID="312">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">75</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">36</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">63</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">60</Parameter>
+      </Module>
+      <Module Name="1965 Marshall JTM-45" ShortName="MarshallJTM45" ID="313">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">80</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">59</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">72</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">72</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">60</Parameter>
+      </Module>
+      <Module Name="1968 Marshall 100 Watt Super Lead (plexi)" ShortName="Marshall100WattSuperLeadPlexi" ID="314">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">85</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">90</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">90</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">90</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">50</Parameter>
+      </Module>
+      <Module Name="1968 Marshall Jump Panel" ShortName="MarshallJumpPanel" ID="315">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">75</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">90</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">90</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">90</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">55</Parameter>
+      </Module>
+      <Module Name="1977 Marshall Master Volume" ShortName="MarshallMasterVolume" ID="316">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">90</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">90</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">90</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">90</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">40</Parameter>
+      </Module>
+      <Module Name="1983 Marshall JCM800" ShortName="MarshallJCM800" ID="317">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">85</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">38</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">36</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">45</Parameter>
+      </Module>
+      <Module Name="1993 Marshall JCM900" ShortName="MarshallJCM900" ID="318">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">90</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">54</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">54</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">43</Parameter>
+      </Module>
+      <Module Name="2001 Marshall JCM2000 (Solo Channel)" ShortName="MarshallJCM2000" ID="319">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">63</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">36</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">65</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">55</Parameter>
+      </Module>
+      <Module Name="1981 Mesa Boogie Mark II C" ShortName="MesaBoogieMarkIIB" ID="320">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">85</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">63</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">55</Parameter>
+      </Module>
+      <Module Name="2001 Mesa Boogie Dual Rectifier" ShortName="MesaBoogieDualRectifier" ID="321">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">80</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">54</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">13</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">76</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">42</Parameter>
+      </Module>
+      <Module Name="1962 Vox AC15" ShortName="VoxAC15" ID="322">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">80</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">60</Parameter>
+      </Module>
+      <Module Name="1963 Vox AC30 Top Boost" ShortName="VoxAC30TopBoost" ID="323">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">40</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">54</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">52</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">65</Parameter>
+      </Module>
+      <Module Name="1969 Hiwatt Custom 100 DR103" ShortName="HiwattCustom100DR103" ID="324">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">85</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">59</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">50</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">60</Parameter>
+      </Module>
+      <Module Name="1988 Soldano SLO-100" ShortName="SoldanoSLO100" ID="325">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">90</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">90</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">90</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">55</Parameter>
+      </Module>
+      <Module Name="1996 Matchless HC30" ShortName="MatchlessHC30" ID="326">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">80</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">63</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">48</Parameter>
+      </Module>
+      <Module Name="1999 Carvin Legacy VL-100" ShortName="CarvinLegacyVL100" ID="327">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">72</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">58</Parameter>
+      </Module>
+      <Module Name="DigiTech GSP2101 Artist Clean Tube" ShortName="DigiTech2101CleanTube" ID="328">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">50</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">50</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">50</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">50</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">88</Parameter>
+      </Module>
+      <Module Name="DigiTech GSP2101 Artist Saturated Tube" ShortName="DigiTech2101SaturatedTube" ID="329">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">75</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">50</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">50</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">50</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">65</Parameter>
+      </Module>
+      <Module Name="DigiTech Spank" ShortName="DigiTechSpank" ID="330">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">52</Parameter>
+      </Module>
+      <Module Name="DigiTech Solo" ShortName="DigiTechSolo" ID="331">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">75</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">50</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">50</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">50</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">50</Parameter>
+      </Module>
+      <Module Name="DigiTech Metal" ShortName="DigiTechMetal" ID="332">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">80</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">50</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">50</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">50</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">37</Parameter>
+      </Module>
+      <Module Name="DigiTech Bright Clean" ShortName="DigiTechBrightClean" ID="333">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">25</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">70</Parameter>
+      </Module>
+      <Module Name="DigiTech Chunk" ShortName="DigiTechChunk" ID="334">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">55</Parameter>
+      </Module>
+      <Module Name="DigiTech Clean Tube" ShortName="DigiTechCleanTube" ID="335">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">40</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">50</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">50</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">50</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">80</Parameter>
+      </Module>
+      <Module Name="DigiTech Crunch" ShortName="DigiTechCrunch" ID="336">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">50</Parameter>
+      </Module>
+      <Module Name="DigiTech High Gain" ShortName="DigiTechHighGain" ID="337">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">75</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">50</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">50</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">50</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">47</Parameter>
+      </Module>
+      <Module Name="DigiTech Blues" ShortName="DigiTechBlues" ID="338">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">70</Parameter>
+      </Module>
+      <Module Name="DigiTech Fuzz" ShortName="DigiTechFuzz" ID="339">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">70</Parameter>
+      </Module>
+      <Module Name="Jumbo Acoustic" ShortName="JumboAcoustic" ID="340">
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">75</Parameter>
+      </Module>
+      <Module Name="Dreadnaught Acoustic" ShortName="DreadnaughtAcoustic" ID="341">
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">75</Parameter>
+      </Module>
+      <Module Name="DigiTech Stonerrock" ShortName="DigiTechStonerRock" ID="368">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">42</Parameter>
+      </Module>
+      <Module Name="DigiTech Darkmetal" ShortName="DigiTechDarkMetal" ID="369">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">56</Parameter>
+      </Module>
+      <Module Name="2002 Mesa Boogie Triple Rectifier" ShortName="MesaBoogieTripleRectifier" ID="370">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">10</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">60</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">42</Parameter>
+      </Module>
+      <Module Name="1993 Mesa Boogie Mark IV" ShortName="MesaBoogieMarkIV" ID="371">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">35</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">55</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">40</Parameter>
+      </Module>
+      <Module Name="1973 Orange OR 120" ShortName="Orange120" ID="372">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">50</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">45</Parameter>
+      </Module>
+      <Module Name="1999 Peavey 5150 II" ShortName="Peavey5150II" ID="373">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">60</Parameter>
+      </Module>
+      <Module Name="1989 Randall RG-100" ShortName="RandalRG100" ID="374">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">60</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">20</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">60</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">70</Parameter>
+      </Module>
+      <Module Name="1984 Roland JC-120" ShortName="RolandJC120" ID="375">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">60</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">55</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">70</Parameter>
+      </Module>
+      <Module Name="1967 Sunn 100S" ShortName="Sunn100S" ID="376">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">53</Parameter>
+      </Module>
+      <Module Name="DigiTech Monster" ShortName="DigiTechMonster" ID="377">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">55</Parameter>
+      </Module>
+      <Module Name="DigiTech Tweedface" ShortName="DigiTechTweedFace" ID="378">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">65</Parameter>
+      </Module>
+      <Module Name="DigiTech Blackbass" ShortName="DigiTechBlackfaceBassman" ID="379">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">65</Parameter>
+      </Module>
+      <Module Name="1960 Gibson GA-40" ShortName="GibsonGA40" ID="380">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">70</Parameter>
+      </Module>
+      <Module Name="1969 Laney Supergroup" ShortName="LaneySupergroup" ID="381">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">60</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">52</Parameter>
+      </Module>
+      <Module Name="DigiTech Transistor" ShortName="DigiTechTransistor" ID="382">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">50</Parameter>
+      </Module>
+      <Module Name="DigiTech Brownsound" ShortName="DigiTechBrownSound" ID="383">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">90</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">90</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">90</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">47</Parameter>
+      </Module>
+      <Module Name="DigiTech Mosh" ShortName="DigiTechMosh" ID="384">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">70</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">45</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">44</Parameter>
+      </Module>
+      <Module Name="1995 Matchless Chieftain" ShortName="MatchlessChieftain" ID="385">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">80</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">40</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">40</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">55</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">48</Parameter>
+      </Module>
+      <Module Name="1986 Mesa Boogie .22 Caliber" ShortName="MesaBoogie22Caliber" ID="386">
+        <Parameter Name="Gain"   ID="2497" Control="Knob" Min="0" Max="99">80</Parameter>
+        <Parameter Name="Bass"   ID="2507" Control="Knob" Min="0" Max="90">40</Parameter>
+        <Parameter Name="Middle" ID="2508" Control="Knob" Min="0" Max="90">40</Parameter>
+        <Parameter Name="Treble" ID="2509" Control="Knob" Min="0" Max="90">40</Parameter>
+        <Parameter Name="Level"  ID="2498" Control="Knob" Min="0" Max="99">57</Parameter>
+      </Module>
     </Amplifier>
     <Cabinet ID="2560">
       <Module Name="Direct" ID="570"/>
