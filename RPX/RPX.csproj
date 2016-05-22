@@ -75,6 +75,7 @@
     <Compile Include="Interfaces\IDevice.cs" />
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Interfaces\IState.cs" />
+    <Compile Include="Messages\Handlers\RxGlobalParams.cs" />
     <Compile Include="Messages\Handlers\RxParamValue.cs" />
     <Compile Include="Messages\Handlers\RxPresetEnd.cs" />
     <Compile Include="Messages\Handlers\RxPresetParams.cs" />

@@ -34,7 +34,7 @@ namespace RPX.UI.Model
     public class DevState : IState
     {
         public ObservableProperty<bool> IsConnectedToDevice { get; }
-        public ObservableProperty<Preset> ActivePreset { get; }
+        public ObservableProperty<Preset> Preset { get; }
         public ObservableCollection<PresetLibraryItem> Presets { get; }
 
         public DevState()
@@ -56,7 +56,7 @@ namespace RPX.UI.Model
                 new PresetLibraryItem { Name = "Preset Name", Location = new PresetLocation(Bank.Local,   0) },
             });
 
-            ActivePreset = new ObservableProperty<Preset>(new Preset(device));
+            Preset = new ObservableProperty<Preset>(new Preset(device));
             IsConnectedToDevice = new ObservableProperty<bool>(false);
         }
 

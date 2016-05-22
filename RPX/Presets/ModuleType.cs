@@ -25,7 +25,7 @@ namespace RPX.Presets
 {
     public enum ModuleType : byte
     {
-        UNKNOWN = 0,
+        GLOBAL = 0,
         WAH = 3,
         COMPRESSOR = 4,
         //ModPitchPrePosition = 5;

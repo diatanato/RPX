@@ -102,7 +102,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.GetModuleByType(ModuleType.MODULATION).Value.Enable
+                return Model.Preset.Value.GetModuleByType(ModuleType.MODULATION).Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
@@ -111,7 +111,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.GetModuleByType(ModuleType.DELAY).Value.Enable
+                return Model.Preset.Value.GetModuleByType(ModuleType.DELAY).Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
@@ -120,7 +120,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.GetModuleByType(ModuleType.REVERB).Value.Enable
+                return Model.Preset.Value.GetModuleByType(ModuleType.REVERB).Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
@@ -129,7 +129,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.GetModuleByType(ModuleType.EQUALIZAR).Value.Enable
+                return Model.Preset.Value.GetModuleByType(ModuleType.EQUALIZAR).Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
@@ -138,7 +138,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.GetModuleByType(ModuleType.COMPRESSOR).Value.Enable
+                return Model.Preset.Value.GetModuleByType(ModuleType.COMPRESSOR).Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
@@ -147,7 +147,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.GetModuleByType(ModuleType.NOISEGATE).Value.Enable
+                return Model.Preset.Value.GetModuleByType(ModuleType.NOISEGATE).Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
@@ -156,7 +156,7 @@ namespace RPX.UI.ViewModels
         {
             get
             {
-                return Model.ActivePreset.Value.GetModuleByType(ModuleType.WAH).Value.Enable
+                return Model.Preset.Value.GetModuleByType(ModuleType.WAH).Value.Enable
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }

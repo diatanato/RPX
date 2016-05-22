@@ -35,7 +35,7 @@ namespace RPX.Interfaces
     public interface IState
     {
         ObservableProperty<bool> IsConnectedToDevice { get; }
-        ObservableProperty<Preset> ActivePreset { get; }
+        ObservableProperty<Preset> Preset { get; }
         ObservableCollection<PresetLibraryItem> Presets { get; }
 
         void LoadPreset(String path);

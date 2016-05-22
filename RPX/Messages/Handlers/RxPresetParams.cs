@@ -49,7 +49,7 @@ namespace RPX.Messages.Handlers
                 var module = (ModuleType)message.ReadByte();
                 var value  = (UInt16)    message.ReadMag7Uint();
 
-                Model.ActivePreset.Value.SetParameter(module, param, value);
+                Model.Preset.Value.SetParameter(module, param, value);
             }
         }
     }

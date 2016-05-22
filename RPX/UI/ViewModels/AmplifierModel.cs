@@ -40,12 +40,12 @@ namespace RPX.UI.ViewModels
         {
             OnPresetChanged();
 
-            Model.ActivePreset.Changed += (sender, e) => OnPresetChanged();
+            Model.Preset.Changed += (sender, e) => OnPresetChanged();
         }
 
         private void OnPresetChanged()
         {
-            var module = Model.ActivePreset.Value.GetModuleByType(ModuleType.AMPLIFIER);
+            var module = Model.Preset.Value.GetModuleByType(ModuleType.AMPLIFIER);
 
             module.Changed += (sender, e) => GetAmplifierParameters(e.Value);
 

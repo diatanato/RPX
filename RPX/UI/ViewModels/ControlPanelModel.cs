@@ -60,7 +60,7 @@ namespace RPX.UI.ViewModels
                     Model.SelectPreset(e.Value.Location);
                 }
             };
-            Model.ActivePreset.Changed += (sender, e) =>
+            Model.Preset.Changed += (sender, e) =>
             {
                 SelectedPreset.Value = Presets.FirstOrDefault(p => p.Location == e.Value.Location);
             };

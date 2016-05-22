@@ -22,30 +22,28 @@
 */
 
 using System;
-
 using Hmg.Comm;
 
 namespace RPX.Messages.Handlers
 {
     using Presets;
 
-    /************************************************************************
-    *                                                                       *
-    *                                                                       *
-    *                                                                       *
-    ************************************************************************/
-
-    public class RxParamValueHandler : MessageHandler
+    public class RxGlobalParamsHandler : MessageHandler
     {
-        public RxParamValueHandler() : base(CommMsgID.RxParamValue) { }
+        public RxGlobalParamsHandler() : base(CommMsgID.RxGlobalParams) { }
 
         public override void HandleMessage(ProcedureInMessage message)
         {
-            var param  = (UInt16)    message.ReadUshort();
-            var module = (ModuleType)message.ReadByte();
-            var value  = (UInt32)    message.ReadMag7Uint();
+            int count = message.ReadUshort();
 
-            Model.Preset.Value.SetParameter(module, param, value);
+            for (int index = 0; index < count; ++index)
+            {
+                var param  = (UInt16)    message.ReadUshort();
+                var module = (ModuleType)message.ReadByte();
+                var value  = (UInt16)    message.ReadMag7Uint();
+
+                Model.Preset.Value.SetParameter(module, param, value);
+            }
         }
     }
 }

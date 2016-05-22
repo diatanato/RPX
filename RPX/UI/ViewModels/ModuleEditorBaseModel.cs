@@ -33,7 +33,7 @@ namespace RPX.UI.ViewModels
     public class ModuleEditorBaseModel : BaseModel
     {
         private readonly ModuleType mModuleType;
-        public DBModule[] Modules { get { return Model.ActivePreset.Value.Device.GetModulesData(mModuleType).Modules; } }
+        public DBModule[] Modules { get { return Model.Preset.Value.Device.GetModulesData(mModuleType).Modules; } }
         
         public ObservableProperty<bool> Enable { get; }
         public ObservableProperty<DBModule> SelectedModule { get; }
@@ -44,18 +44,18 @@ namespace RPX.UI.ViewModels
 
             Enable = new ObservableProperty<bool>(true);
             SelectedModule = new ObservableProperty<DBModule>();
-            SelectedModule.Changed += (sender, e) => Model.SetParameterValue(mModuleType, Model.ActivePreset.Value.Device.GetModulesData(mModuleType).ID, e.Value.ID);
+            SelectedModule.Changed += (sender, e) => Model.SetParameterValue(mModuleType, Model.Preset.Value.Device.GetModulesData(mModuleType).ID, e.Value.ID);
 
             OnPresetChanged();
             
-            Model.ActivePreset.Changed += (sender, e) => OnPresetChanged();
+            Model.Preset.Changed += (sender, e) => OnPresetChanged();
         }
 
         private void OnPresetChanged()
         {
             NotifyPropertyChanged(nameof(Modules));
-            SelectCurrentModule(Model.ActivePreset.Value.GetModuleByType(mModuleType).Value.ID);
-            Model.ActivePreset.Value.GetModuleByType(mModuleType).Changed += (sender, e) => SelectCurrentModule(e.Value.ID);
+            SelectCurrentModule(Model.Preset.Value.GetModuleByType(mModuleType).Value.ID);
+            Model.Preset.Value.GetModuleByType(mModuleType).Changed += (sender, e) => SelectCurrentModule(e.Value.ID);
         }
 
         private void SelectCurrentModule(UInt32 id)

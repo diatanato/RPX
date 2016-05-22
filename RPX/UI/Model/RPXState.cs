@@ -42,13 +42,13 @@ namespace RPX.UI.Model
         private readonly IService mService = ServiceStorage.Resolve<IService>();
 
         public ObservableProperty<bool> IsConnectedToDevice { get; }
-        public ObservableProperty<Preset> ActivePreset { get; }
+        public ObservableProperty<Preset> Preset { get; }
         public ObservableCollection<PresetLibraryItem> Presets { get; }
 
         public RPXState()
         {
             Presets = new ObservableCollection<PresetLibraryItem>();
-            ActivePreset = new ObservableProperty<Preset>(new Preset(ServiceStorage.Resolve<DBDevicesData>().Devices.FirstOrDefault(/*идентификатор процессора*/)));
+            Preset = new ObservableProperty<Preset>(new Preset(ServiceStorage.Resolve<DBDevicesData>().Devices.FirstOrDefault(/*идентификатор процессора*/)));
             IsConnectedToDevice = new ObservableProperty<bool>(mService.IsConnected);
             
             mService.ConnectedToDevice += ConnectedToDevice;
@@ -74,11 +74,11 @@ namespace RPX.UI.Model
             //TODO: проверяем тип процессора в пресете. меняем на подключенный, если отличается
             //TODO: запрашивать пользователя о необходимости сохранения текущего пресета или его потере
 
-            ActivePreset.Value = new Preset(ServiceStorage.Resolve<DBDevicesData>().Devices.FirstOrDefault(/*идентификатор процессора*/));
+            Preset.Value = new Preset(ServiceStorage.Resolve<DBDevicesData>().Devices.FirstOrDefault(/*идентификатор процессора*/));
 
-            mService.SetParameterValue(ModuleType.UNKNOWN, 12298, 1);
+            mService.SetParameterValue(ModuleType.GLOBAL, 12298, 1);
             SyncPresetLibrary();
-            //mService.SetParameterValue(ModuleType.UNKNOWN, 12298, 0);
+            //mService.SetParameterValue(ModuleType.GLOBAL, 12298, 0);
         }
 
         private void DisconnectedFromDevice(object sender, EventArgs e)
@@ -90,9 +90,9 @@ namespace RPX.UI.Model
 
         public void SelectPreset(PresetLocation location)
         {
-            if (location != null && location != ActivePreset.Value.Location)
+            if (location != null && location != Preset.Value.Location)
             {
-                ActivePreset.Value.Location = location;
+                Preset.Value.Location = location;
 
                 switch (location.Bank)
                 {
@@ -105,7 +105,7 @@ namespace RPX.UI.Model
                         mService.GetPreset(location);
                         break;
                 }
-                ActivePreset.NotifyPropertyChanged();
+                Preset.NotifyPropertyChanged();
             }
         }
 
@@ -130,7 +130,7 @@ namespace RPX.UI.Model
                     {
                         foreach (var parameter in preset.Params.Param)
                         {
-                            ActivePreset.Value.SetParameter((ModuleType)parameter.Position, parameter.ID, parameter.Value);
+                            Preset.Value.SetParameter((ModuleType)parameter.Position, parameter.ID, parameter.Value);
                         }
                         //mService.SetPreset(preset);
                     }
@@ -168,7 +168,7 @@ namespace RPX.UI.Model
         /// <param name="value"></param>
         public void SetParameterValue(ModuleType module, UInt16 paramid, UInt32 value)
         {
-            ActivePreset.Value.SetParameter(module, paramid, value);
+            Preset.Value.SetParameter(module, paramid, value);
 
             mService.SetParameterValue(module, paramid, value);
         }
