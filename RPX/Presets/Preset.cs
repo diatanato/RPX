@@ -48,7 +48,7 @@ namespace RPX.Presets
             }
         }
 
-        public void SetParameter(ModuleType type, UInt16 paramid, UInt32 value)
+        public bool SetParameter(ModuleType type, UInt16 paramid, UInt32 value)
         {
             Console.WriteLine($"module: {type}, param: {paramid}, value: {value}");
 
@@ -59,10 +59,11 @@ namespace RPX.Presets
                 if (module.Value.ID != value)
                 {
                     module.Value = new Module(paramid, Device.GetModule(type, value));
+                    return true;
                 }
-                return;
+                return false;
             }
-            module.Value.SetParameter(paramid, value);
+            return module.Value.SetParameter(paramid, value);
         }
 
         public ObservableProperty<Module> GetModuleByType(ModuleType type)

@@ -27,7 +27,7 @@ using Hmg.Comm;
 
 namespace RPX.Messages.Handlers
 {
-    using RPX.Presets;
+    using Presets;
 
     /************************************************************************
     *                                                                       *

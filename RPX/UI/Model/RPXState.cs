@@ -168,9 +168,10 @@ namespace RPX.UI.Model
         /// <param name="value"></param>
         public void SetParameterValue(ModuleType module, UInt16 paramid, UInt32 value)
         {
-            Preset.Value.SetParameter(module, paramid, value);
-
-            mService.SetParameterValue(module, paramid, value);
+            if (Preset.Value.SetParameter(module, paramid, value))
+            {
+                mService.SetParameterValue(module, paramid, value);
+            }
         }
 
         #region отслеживание
